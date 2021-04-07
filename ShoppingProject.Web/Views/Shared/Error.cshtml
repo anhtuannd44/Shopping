@@ -1,0 +1,35 @@
+﻿@model ErrorViewModel
+@{ ViewData["Title"] = "Error"; }
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2>
+
+@if (Model.ShowRequestId)
+{
+<p>
+    <strong>Request ID:</strong> <code>@Model.RequestId</code>
+</p>}
+
+<div class="alert alert-danger my-2">
+    @switch (Model.Message.Count())
+    {
+        case 0:
+            @: Something went wrong. Please try again
+            break;
+        case 1:
+            @Model.Message.First();
+            break;
+        default:
+            @: The following errors were encountered:
+            <ul>
+                @foreach (string error in Model.Message)
+                {
+                    <li>@error</li>
+                }
+            </ul>
+            break;
+    }
+</div>
+<div class="text-center">
+    @Html.ActionLink("OK", "Index", "Home", null, new { @class = "btn btn-primary" })
+</div>

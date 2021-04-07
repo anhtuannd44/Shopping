@@ -1,0 +1,49 @@
+﻿@model dynamic
+
+<link rel="stylesheet" href="~/lib/jqueryui/themes/base/theme.min.css" />
+<link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.min.css" />
+<link rel="stylesheet" href="~/lib/elfinder/css/elfinder.full.css" />
+<link rel="stylesheet" href="~/lib/elfinder/css/theme.css" />
+<link rel="stylesheet" href="~/css/elfinder-material-theme/Material/css/theme-gray.css" />
+
+<script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+<script src="~/lib/elfinder/js/elfinder.min.js"></script>
+
+
+<script>
+    function renderImage(target, isMultiple, preview) {
+        var fm = $('<div/>').dialogelfinder({
+            url: '/el-finder-file-system/connector',
+            baseUrl: "/lib/elfinder/",
+            lang: 'vi',
+            width: 900,
+            height: 600,
+            destroyOnClose: true,
+            getFileCallback: function (files, fm) {
+                if (isMultiple) {
+                    $(preview).html("");
+                    $.each(files, function (key, value) {
+                        $(preview).append("<img src='" + value.url + "' class='pre-img p-2 shadow rounded' style='width:30%; object-fit: cover; height: 70px'/>")
+                    });
+                    $.each(files, function (key, value) {
+                        $(preview).append("<input id='selectImage' name='selectImage' value='" + value.url + "' type='hidden'/>")
+                    });
+                    console.log($(preview).html());
+                }
+                else {
+                    console.log(files.url);
+                    $(preview).attr('src', files.url);
+                    $(target).val(files.url);
+                }
+            },
+            commandsOptions: {
+                getfile: {
+                    multiple: isMultiple,
+                    oncomplete: 'close',
+                    folders: true
+                }
+            }
+        }).dialogelfinder('instance');
+    }
+</script>
+

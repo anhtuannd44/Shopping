@@ -1,0 +1,222 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using ShoppingProject.Domain.DomainModels
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*<meta name="description" content="@ViewData["Description"]">*@
+    @*<meta name="keywords" content="@ViewData["Keywords"]">*@
+    <meta name="author" content="Ribmax">
+    <link rel="icon" href="~/lib/theme/assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="~/lib/theme/assets/images/favicon.png" type="image/x-icon">
+    <title>@ViewData["Title"] - Ribmax</title>
+
+    <link href="~/css/fonts.css" rel="stylesheet" />
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="~/lib/theme/assets/css/icofont.css" />
+        <link rel="stylesheet" type="text/css" href="~/lib/theme/assets/css/themify.css" />
+        <link rel="stylesheet" type="text/css" href="~/lib/font-awesome/css/all.min.css" />
+        <link rel="stylesheet" type="text/css" href="~/lib/theme/assets/css/vendors/flag-icon.css">
+        <link rel="stylesheet" type="text/css" href="~/lib/sweetalert2/sweetalert2.min.css" />
+        <link rel="stylesheet" type="text/css" href="~/lib/theme/assets/css/feather-icon.css" />
+        <link rel="stylesheet" type="text/css" href="~/lib/theme/assets/css/vendors/animate.css">
+        <link rel="stylesheet" type="text/css" href="~/lib/theme/assets/css/vendors/owlcarousel.css">
+        <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="~/lib/theme/assets/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="~/lib/theme/assets/css/responsive.css" />
+    </environment>
+
+    <environment exclude="Development">
+        <link rel="stylesheet" type="text/css" href="~/css/vendor.min.css" />
+    </environment>
+
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+</head>
+<body class="landing-page ">
+    <header>
+        <div class="top-header" id="topHeader">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="py-4">
+                            <img src="~/images/Logo-Header.png" height="100" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="#" class="btn btn-primary btn-air-primary btn-lg wow pulse">ĐẶT HÀNG NGAY</a>
+                        <br />
+                        <a href="#" class="btn btn-outline-primary btn-air-primary btn-lg mt-3 wow pulse">Gọi ngay: 1800 1548</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-header fixed-top w-100" id="mainHeader">
+            <div class="container">
+                <nav class="navbar-expand-xl sticky-top" id="sidebar-menu">
+                    <button class="navbar-toggler navabr_btn-set custom_nav" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+                    <div class="navbar-collapse justify-content-start collapse hidenav" id="navbarDefault">
+                        <ul class="navbar-nav navbar_nav_modify text-uppercase nav-menus" id="scroll-spy">
+                            <li class="nav-item"><a class="nav-link" href="/">TRANG CHỦ</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="#dashboards">RIBMAX - ĐẬM CHẤT ĐÀN ÔNG</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#components">SỨC KHỎE SINH LÝ NAM</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#components">MUA NGAY</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#components">HỎI ĐÁP</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#components">LIÊN HỆ</a></li>
+                            <li class="cart-nav onhover-dropdown mini-cart" id="miniCart">
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="page-wrapper landing-page">
+
+        @RenderBody()
+        <footer>
+            <div class="footer-1 py-3 border-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="footer-title">
+                                <h3><span>Thương </span><span class="text">Hiệu</span></h3>
+                            </div>
+                            <div class="footer-content">
+                                CÔNG TY CỔ PHẦN DƯỢC PHẨM ECO<br />
+                                Giấy chứng nhận ĐKKD số 0102637020 do sở Kế hoạch và Đầu tư TP. Hà Nội cấp ngày 29/01/2008<br />
+                                Địa chỉ: 148 Hoàng Hoa Thám, phường 12, quận Tân Bình, TP.Hồ Chí Minh<br />
+                                180 Trường Chinh, phường Khương Thượng, quận Đống Đa, TP. Hà Nội<br />
+                                Điện thoại: (84 28) 62936629 - 62936630 - Email: tuvanykhoa@alipas.com.vn<br />
+                                Bản quyền © 2014 thuộc về ECO PHARMA.
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="footer-title">
+                                <p>SINH LÝ NAM GIỚI</p>
+                            </div>
+                            <div class="footer-content">
+                                <ul>
+                                    <li><a href="/blog/danh-muc/17/cong-dong-chu-nha">Cộng đồng chủ nhà</a></li>
+                                    <li><a href="/Host">Trở thành chủ nhà</a></li>
+                                    <li><a href="/trang/25/dich-vu-cung-cap">Dịch vụ cung cấp</a></li>
+                                    <li><a href="/trang/26/thong-tin-hoi-dap">Thông tin hỏi - đáp</a></li>
+                                    <li><a href="/trang/27/huong-dan-su-dung">Hướng dẫn sử dụng</a></li>
+                                    <li><a href="/trang/28/phan-hoi---gop-y">Phản hồi - Góp ý</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="footer-title">
+                                <p>LIÊN KẾT NHANH</p>
+                            </div>
+                            <div class="footer-content">
+                                <ul>
+                                    <li><a href="https://www.agoda.com/">Agoda.com</a></li>
+                                    <li><a href="https://www.booking.com/">Booking.com</a></li>
+                                    <li><a href="https://www.luxstay.com/">Luxstay.vn</a></li>
+                                    <li><a href="https://www.traveloka.com/">Traveloka.com</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="footer-title">
+                                <P>LIÊN KẾT VỚI CHÚNG TÔI</P>
+                            </div>
+                            <div class="footer-content">
+                                <div class="social-information mt-2">
+                                    <a href="#" class="btn btn-social-icon btn-facebook btn-rounded" target="_blank"><i class="icofont-facebook"></i></a>
+                                    <a href="#" class="btn btn-social-icon btn-youtube btn-rounded" target="_blank"><i class="icofont-youtube"></i></a>
+                                </div>
+                                <p class="small font-italic">Thực phẩm bảo vệ sức khỏe. Thực phẩm này không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-2">
+                <div class="container container-modify text-center py-2">
+                    <p class="mb-0 text-light">Mọi nội dung tại đây © 2019 - Công ty TNHH-TMDV Ribmax giữ toàn quyền</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <environment include="Development">
+        <script type="text/javascript" src="~/lib/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="~/lib/theme/assets/js/bootstrap/popper.min.js"></script>
+        <script type="text/javascript" src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+        <script type="text/javascript" src="~/lib/theme/assets/js/icons/feather-icon/feather.min.js"></script>
+        <script type="text/javascript" src="~/lib/theme/assets/js/icons/feather-icon/feather-icon.js"></script>
+        <script type="text/javascript" src="~/lib/theme/assets/js/config.js"></script>
+        <script type="text/javascript" src="~/lib/theme/assets/js/owlcarousel/owl.carousel.js"></script>
+        <script type="text/javascript" src="~/lib/theme/assets/js/owlcarousel/owl-custom.js"></script>
+        <script type="text/javascript" src="~/lib/sweetalert2/sweetalert2.min.js"></script>
+        <script type="text/javascript" src="~/lib/theme/assets/js/animation/wow/wow.min.js"></script>
+        <script type="text/javascript" src="~/lib/theme/assets/js/landing_sticky.js"></script>
+        <script type="text/javascript" src="~/lib/theme/assets/js/landing.js"></script>
+        <script type="text/javascript" src="~/js/site.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script type="text/javascript" src="~/js/vendor.min.js"></script>
+    </environment>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            loadMiniCart();
+            exitSpinner();
+        });
+        function loadMiniCart() {
+            $("#miniCart").load("/Cart/MiniCart");
+        }
+        $(document).on("click", ".remove-product", function () {
+            var productId = $(this).data("id");
+            $.ajax({
+                method: "GET",
+                url: "/cart/remove",
+                data: {
+                    productId: productId
+                },
+                beforeSend: function () {
+                    loadSpinner();
+                },
+                success: function (response) {
+                    var data = response;
+                    if (data.Status == 200) {
+                        loadMiniCart();
+                        Swal.fire(
+                            'Thành công!',
+                            'Xóa sản phẩm khỏi giỏ hàng',
+                            'success'
+                        );                        
+                    }
+                    else {
+                        Swal.fire(
+                            'Thất bại!',
+                            'Có lỗi xảy ra trong quá trình thực hiện. Vui lòng thử lại.',
+                            'error'
+                        )
+                    }
+                },
+                error: function () {
+                    Swal.fire(
+                        'Thất bại!',
+                        'Có lỗi xảy ra khi gửi dữ liệu.',
+                        'error'
+                    )
+                },
+                complete: function () {
+                    exitSpinner()
+                }
+            })
+        })
+    </script>
+</body>
+</html>
+

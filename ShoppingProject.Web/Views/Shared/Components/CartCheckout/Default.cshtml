@@ -1,0 +1,23 @@
+﻿@model List<ShoppingProject.Web.Models.ShoppingCartItem>
+@{ var total = 0; }
+<div class="order-box">
+    <div class="title-box">
+        <div class="checkbox-title">
+            <h4 class="m-0">Sản phẩm </h4><span>Thành tiền</span>
+        </div>
+    </div>
+    <ul class="qty">
+        @foreach (var item in Model)
+        {
+            var thanhtien = (item.Product.PromotionPrice ?? item.Product.Price) * item.Quantity;
+            total += thanhtien;
+            <li>@item.Product.Title × @item.Quantity <span>@thanhtien.ToString("C0")</span></li>
+        }
+    </ul>
+    <ul class="sub-total total">
+        <li>Tổng cộng <span class="count">@total.ToString("C0")</span></li>
+    </ul>
+    <div class="text-end">
+    <a class="btn btn-primary btn-block" href="#" data-bs-original-title="" title="">HOÀN TẤT ĐẶT HÀNG</a>
+    </div>
+</div>

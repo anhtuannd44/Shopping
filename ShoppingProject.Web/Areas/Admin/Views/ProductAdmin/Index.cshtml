@@ -1,0 +1,98 @@
+﻿@model IEnumerable<ShoppingProject.Domain.DomainModels.Product>
+
+@{
+    ViewData["Title"] = "Sản phẩm";
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid">
+    <div class="row align-items-center">
+        <div class="col-6">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/~" data-original-title="" title="">
+                        <i class="icofont-home"></i> Bảng điều khiển
+                    </a>
+                </li>
+                <li class="breadcrumb-item active">@ViewData["Title"]</li>
+            </ol>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-primary">Thêm mới</a>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <h5>Danh sách bài viết</h5>
+        </div>
+        <div class="card-body">
+            @if (Model.Count() > 0)
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá bán</th>
+                                <th>Khuyến mãi</th>
+                                <th>Ngày tạo</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr id="td_@item.ProductId">
+                                    <td>
+                                        @if (string.IsNullOrEmpty(item.CoverUrl))
+                                        {
+                                            <img src="~/lib/theme/assets/images/no-picture.jpg" width="40" />
+                                        }
+                                        else
+                                        {
+                                            <img src="@item.CoverUrl" width="40" />
+                                        }
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.ProductId">@item.Title</a>
+                                        <br />
+                                        <span style="font-size: .8rem" class="text-grey">@item.Slug</span>
+                                    </td>
+                                    <td>@string.Format("C0",item.Price)</td>
+                                    <td>@string.Format("C0",item.PromotionPrice)</td>
+                                    <td>@item.DateCreated.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.ProductId" class="badge badge-warning"><i class="icofont-pencil-alt-2"></i></a>
+                                        <a asp-action="Details" asp-route-id="@item.ProductId" class="badge badge-info"><i class="icofont-eye-alt"></i></a>
+                                        <a href="#" class="badge badge-danger delete" data-id="@item.ProductId" data-name="@item.Title"><i class="icofont-ui-delete"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="text-center">
+                    <p class="">Chưa có dữ liệu</p>
+                    <a asp-action="Create" class="btn btn-gradient-primary">Thêm mới</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(".delete").click( function () {
+            var id = $(this).data("id");
+            var name = $(this).data("name");
+            deleteAjax(id, "@Url.Action("Delete")");
+        })
+    </script>
+}

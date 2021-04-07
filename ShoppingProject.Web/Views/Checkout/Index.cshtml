@@ -1,0 +1,70 @@
+﻿@model ShoppingProject.Domain.DomainModels.Order
+@{
+    ViewData["Title"] = "Hoàn tất đơn hàng";
+    Layout = "_Layout";
+}
+<div class="container">
+    <div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/" data-original-title="" title="">
+                    <i class="icofont-home"></i> Trang chủ
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a asp-action="Index" data-original-title="" title="">
+                    Sản phẩm
+                </a>
+            </li>
+            <li class="breadcrumb-item active">Hoàn tất đơn hàng</li>
+        </ol>
+    </div>
+    <div class="row">
+        <div class="col-md-7 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form asp-action="Index">
+                        @Html.AntiForgeryToken()
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="mb-3 col-sm-6">
+                                <div class="form-group">
+                                    <label asp-for="CustomerName"></label>
+                                    <input class="form-control" asp-for="CustomerName" type="text" />
+                                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3 col-sm-6">
+                                <div class="form-group">
+                                    <label asp-for="CustomerPhoneNumber"></label>
+                                    <input class="form-control" asp-for="CustomerPhoneNumber" type="text" />
+                                    <span asp-validation-for="CustomerPhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CustomerAddress"></label>
+                            <input class="form-control" asp-for="CustomerAddress" type="text" />
+                            <span asp-validation-for="CustomerAddress" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CustomerMessage"></label>
+                            <textarea class="form-control" asp-for="CustomerMessage" rows="5"></textarea>
+                            <span asp-validation-for="CustomerMessage" class="text-danger"></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="checkout-details" id="cartCheckout">
+                        @await Component.InvokeAsync("CartCheckout")
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

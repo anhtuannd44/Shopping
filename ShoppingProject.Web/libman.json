@@ -1,0 +1,85 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "elfinder@2.1.57",
+      "destination": "wwwroot/lib/elfinder"
+    },
+    {
+      "library": "jquery@3.5.1",
+      "destination": "wwwroot/lib/jquery/",
+      "files": [
+        "jquery.min.js"
+      ]
+    },
+    {
+      "library": "twitter-bootstrap@4.5.3",
+      "destination": "wwwroot/lib/bootstrap/",
+      "files": [
+        "js/bootstrap.min.js",
+        "css/bootstrap.min.css"
+      ]
+    },
+    {
+      "library": "jqueryui@1.12.1",
+      "destination": "wwwroot/lib/jqueryui/",
+      "files": [
+        "jquery-ui.min.js",
+        "themes/base/theme.min.css",
+        "themes/base/jquery-ui.min.css",
+        "jquery-ui.min.css",
+        "jquery-ui.theme.css",
+        "jquery-ui.theme.min.css"
+      ]
+    },
+    {
+      "library": "jquery-ajax-unobtrusive@3.2.6",
+      "destination": "wwwroot/lib/jquery-ajax-unobtrusive/",
+      "files": [
+        "jquery.unobtrusive-ajax.min.js"
+      ]
+    },
+    {
+      "library": "jquery-validate@1.19.2",
+      "destination": "wwwroot/lib/jquery-validate/"
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.11",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive/"
+    },
+    {
+      "library": "node-waves@0.7.6",
+      "destination": "wwwroot/lib/node-waves/",
+      "files": [
+        "waves.min.js",
+        "waves.min.css"
+      ]
+    },
+    {
+      "library": "popper.js@2.5.4",
+      "destination": "wwwroot/lib/popper.js/"
+    },
+    {
+      "library": "summernote@0.8.18",
+      "destination": "wwwroot/lib/summernote/"
+    },
+    {
+      "library": "select2@4.0.13",
+      "destination": "wwwroot/lib/select2/",
+      "files": [
+        "js/select2.min.js",
+        "js/i18n/vi.min.js",
+        "css/select2.min.css"
+      ]
+    },
+    {
+      "library": "limonte-sweetalert2@10.12.4",
+      "destination": "wwwroot/lib/sweetalert2/"
+    },
+    {
+      "library": "font-awesome@5.15.3",
+      "destination": "wwwroot/lib/font-awesome/"
+    }
+  ]
+}

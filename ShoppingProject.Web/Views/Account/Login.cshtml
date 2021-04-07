@@ -1,0 +1,44 @@
+﻿@model ShoppingProject.Web.Models.Account.AccountLoginModel
+@{
+    ViewData["Title"] = "Đăng Nhập";
+    Layout = "_AuthLayout";
+}
+<div class="container-fluid p-0">
+    <div class="row m-0">
+        <div class="col-12 p-0">
+            <div class="login-card">
+                <div>
+                    <div class="login-main">
+                        <form class="theme-form" asp-controller="Account" asp-action="Login" method="post" role="form">
+                            <h4>Đăng Nhập</h4>
+                            <p>Nhập Email &amp; mật khẩu để đăng nhập</p>
+                            <input type="hidden" asp-for="ReturnUrl"/>
+                            <div class="form-group">
+                                <label for="user" class="col-form-label">Email</label>
+                                <input class="form-control" asp-for="Email" type="email" placeholder="Nhập email của bạn" id="user">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="pass" class="col-form-label">Mật khẩu</label>
+                                <input id="pass" type="password" asp-for="Password" data-type="password" class="form-control" placeholder="*********">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <span asp-validation-for="IncorrectInput" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-0">
+                                <div class="checkbox p-0">
+                                    <input id="RememberMe" type="checkbox">
+                                    <label class="text-muted" asp-for="RememberMe">Ghi nhớ đăng nhập</label>
+                                </div>
+                                <a class="link" href="forget-password.html">Quên mật khẩu?</a>
+                                <button class="btn btn-primary btn-block" type="submit">Đăng Nhập</button>
+                            </div>
+                            @*<p class="mt-4 mb-0">Bạn chưa có tài khoản?<a asp-action="Register" asp-route-returnUrl="@Model.ReturnUrl" class="ms-2"> Đăng ký ngay</a></p>*@
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
