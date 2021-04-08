@@ -1,0 +1,122 @@
+﻿@model ShoppingProject.Domain.DomainModels.Order
+@{
+    ViewData["Title"] = "Hoàn tất đơn hàng";
+    Layout = "_Layout";
+    decimal total = 0;
+}
+<div class="container">
+    <div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/" data-original-title="" title="">
+                    <i class="icofont-home"></i> Trang chủ
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a asp-action="Index" data-original-title="" title="">
+                    Đơn hàng
+                </a>
+            </li>
+            <li class="breadcrumb-item active">@Model.OrderId</li>
+        </ol>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="invoice">
+                        <div>
+                            <div class="text-center py-4">
+                                <h3 class="text-primary">Đơn hàng của bạn đã được xác nhận!</h3>
+                                <h4 class="media-heading">Mã đơn hàng: <span class="text-danger">@Model.OrderId</span></h4>
+                            </div>
+                            <hr>
+                            <!-- End InvoiceTop-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <div class="media-left"><img class="media-object rounded-circle img-60" src="../assets/images/user/1.jpg" alt=""></div>
+                                        <div class="media-body m-l-20">
+                                            <h4 class="media-heading">Thông tin đặt hàng</h4>
+                                            <p class="m-0">Họ và tên: <strong class="text-primary">@Model.CustomerName</strong></p>
+                                            <p class="m-0">Số điện thoại: @Model.CustomerPhoneNumber</p>
+                                            <p class="m-0">Địa chỉ: @Model.CustomerAddress</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-md-end" id="project">
+                                        <h6>Ghi chú cho đơn hàng:</h6>
+                                        <p>@Model.CustomerMessage</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Invoice Mid-->
+                            <div>
+                                <div class="table-responsive invoice-table" id="table">
+                                    <table class="table table-bordered table-striped">
+                                        <tbody>
+                                            <tr class="bg-light">
+                                                <td class="item">
+                                                    <h6 class="p-2 mb-0">Tên sản phẩm</h6>
+                                                </td>
+                                                <td class="text-center">
+                                                    <h6 class="p-2 mb-0">Đơn giá</h6>
+                                                </td>
+                                                <td class="text-center">
+                                                    <h6 class="p-2 mb-0 text-center">Số lượng</h6>
+                                                </td>
+                                                <td class="text-center">
+                                                    <h6 class="p-2 mb-0">Thành tiền</h6>
+                                                </td>
+                                            </tr>
+                                            @foreach (var item in Model.OrderDetails)
+                                            {
+                                                var thanhtien = item.Price * item.Quantity;
+                                                total += thanhtien;
+                                                <tr>
+                                                    <td>
+                                                        <p class="m-0">@item.Product.Title</p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="itemtext text-center">@item.Price.ToString("C0")</p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="itemtext text-center">@item.Quantity</p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="itemtext text-right">@thanhtien.ToString("C0")</p>
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                            <tr class="bg-light">
+                                                <td></td>
+                                                <td></td>
+                                                <td class="Rate">
+                                                    <h6 class="mb-0">Tổng cộng</h6>
+                                                </td>
+                                                <td class="payment text-right">
+                                                    <h6 class="mb-0">@total.ToString("C0")</h6>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                            <p class="legal"><strong>Cảm ơn bạn đã đặt hàng</strong>&nbsp; Chúng tôi sẽ liên hệ trực tiếp với bạn qua Số điện thoại để xác nhận đơn hàng trong thời gian sớm nhất!</p>
+                            </div>
+                            <!-- End InvoiceBot-->
+                        </div>
+                        <div class="col-sm-12 text-center mt-3">
+                            <a class="btn btn btn-primary me-2" href="/">Quay về trang chủ</a>
+                            <a href="/lien-he" class="btn btn-secondary">Liên hệ</a>
+                        </div>
+                        <!-- End Invoice-->
+                        <!-- End Invoice Holder-->
+                        <!-- Container-fluid Ends-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

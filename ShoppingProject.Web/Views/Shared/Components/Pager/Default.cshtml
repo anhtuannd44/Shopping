@@ -1,0 +1,58 @@
+﻿@model ShoppingProject.Utilities.PagedResultBase
+@{
+    var urlTemplate = Url.Action() + "?page={0}";
+    var request = ViewContext.HttpContext.Request;
+    foreach (var key in request.Query.Keys)
+    {
+        if (key == "page")
+        {
+            continue;
+        }
+
+        urlTemplate += "&" + key + "=" + request.Query[key];
+    }
+
+    var startIndex = Math.Max(Model.CurrentPage - 5, 1);
+    var finishIndex = Math.Min(Model.CurrentPage + 5, Model.PageCount);
+}
+<div class="pagination-area py-3">
+    <div class="text-light text-center mb-2">
+        Từ @Model.FirstRowOnPage đến @Model.LastRowOnPage của @Model.RowCount kết quả
+    </div>
+    <div class="">
+        @if (Model.PageCount > 1)
+        {
+            <nav aria-label="Page navigation example">            
+                <ul class="pagination pagination-primary justify-content-center">
+                    @if (Model.CurrentPage == startIndex)
+                    {
+                         <li class="page-item"><a class="page-link" href="javascript:void(0)" aria-label="Previous" data-bs-original-title="" title=""><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item"><a class="page-link" href="@urlTemplate.Replace("{0}", Model.PageCount.ToString())" aria-label="Previous" data-bs-original-title="" title=""><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+                    }
+                    @for (var i = startIndex; i <= finishIndex; i++)
+                    {
+                        if (i == Model.CurrentPage)
+                        {
+                            <li class="page-item active"><a class="page-link" href="javascript:void(0)" data-bs-original-title="" title="">@i</a></li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a class="page-link" href="@urlTemplate.Replace("{0}", i.ToString())" data-bs-original-title="" title="">@i</a></li>
+                        }
+                    }
+                    @if (Model.CurrentPage == finishIndex)
+                    {
+                        <li class="page-item"><a class="page-link" href="javascript:void(0)" aria-label="Next" data-bs-original-title="" title=""><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item"><a class="page-link" href="@urlTemplate.Replace("{0}", Model.PageCount.ToString())" aria-label="Next" data-bs-original-title="" title=""><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
+                    }
+                </ul>
+            </nav>
+        }
+    </div>
+</div>

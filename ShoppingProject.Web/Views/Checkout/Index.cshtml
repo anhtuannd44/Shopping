@@ -1,8 +1,6 @@
 ﻿@model ShoppingProject.Domain.DomainModels.Order
-@{
-    ViewData["Title"] = "Hoàn tất đơn hàng";
-    Layout = "_Layout";
-}
+@{ ViewData["Title"] = "Hoàn tất đơn hàng";
+                Layout = "_Layout"; }
 <div class="container">
     <div>
         <ol class="breadcrumb">
@@ -19,11 +17,11 @@
             <li class="breadcrumb-item active">Hoàn tất đơn hàng</li>
         </ol>
     </div>
-    <div class="row">
-        <div class="col-md-7 col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <form asp-action="Index">
+    <form asp-action="Index" method="POST">
+        <div class="row">
+            <div class="col-md-7 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
                         @Html.AntiForgeryToken()
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="row">
@@ -52,19 +50,22 @@
                             <textarea class="form-control" asp-for="CustomerMessage" rows="5"></textarea>
                             <span asp-validation-for="CustomerMessage" class="text-danger"></span>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-5 col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="checkout-details" id="cartCheckout">
-                        @await Component.InvokeAsync("CartCheckout")
+
                     </div>
                 </div>
             </div>
-
+            <div class="col-md-5 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="checkout-details" id="cartCheckout">
+                            @await Component.InvokeAsync("CartCheckout")
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
+@section scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

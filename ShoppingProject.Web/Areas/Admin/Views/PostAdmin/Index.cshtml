@@ -73,7 +73,7 @@
                                         <span style="font-size: .8rem" class="text-grey">@item.Slug</span>
                                     </td>
                                     <td>
-                                        @(item.CategoryId.HasValue?item.Categories.Title: "Không có chuyên mục")
+                                        @item.Categories.Title
                                     </td>
                                     <td>
                                         @item.Author.Email

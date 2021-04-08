@@ -8,5 +8,6 @@ namespace ShoppingProject.Service.Interface
     public interface IOrderService
     {
         Task CreateNewOrder(Order order, List<ProductOrderWithQuantity> productList);
+        Task<Order> GetOrderById(string orderId);
     }
 }

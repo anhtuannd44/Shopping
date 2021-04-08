@@ -17,7 +17,7 @@ namespace ShoppingProject.Domain.EntityConfiguration
                 .IsRequired(true)
                 .HasMaxLength(500);
             builder.Property(a => a.CustomerMessage)
-                .IsRequired(true)
+                .IsRequired(false)
                 .HasMaxLength(1000);
             builder.Property(a => a.CustomerPhoneNumber)
                 .IsRequired(true)

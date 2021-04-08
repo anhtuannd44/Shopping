@@ -25,7 +25,7 @@ namespace ShoppingProject.Domain.EntityConfiguration
             builder.Property(a => a.AuthorId)
                 .IsRequired(false);
             builder.Property(a => a.CategoryId)
-                .IsRequired(false);
+                .IsRequired(true);
             builder.Property(a => a.CoverUrl)
                 .IsRequired(false);
             builder.HasOne<ApplicationUser>(a => a.Author)
@@ -35,7 +35,7 @@ namespace ShoppingProject.Domain.EntityConfiguration
             builder.HasOne<PostCategory>(a => a.Categories)
                 .WithMany(b => b.Posts)
                 .HasForeignKey(c => c.CategoryId)
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

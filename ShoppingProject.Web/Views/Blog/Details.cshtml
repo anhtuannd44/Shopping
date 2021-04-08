@@ -1,0 +1,48 @@
+﻿@model ShoppingProject.Domain.DomainModels.Post
+@{
+    ViewData["Title"] = Model.Title;
+    Layout = "_Layout";
+}
+<div class="blog-design">
+    <div class="container">
+        <div>
+            <ol class="breadcrumb mb-1">
+                <li class="breadcrumb-item">
+                    <a href="/" data-original-title="" title="">
+                        <i class="icofont-home"></i> Trang chủ
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="/tin-tuc" data-original-title="" title="">
+                        Tin tức
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="/tin-tuc/@Model.Categories.Slug" data-original-title="" title="">
+                        @Model.Categories.Title
+                    </a>
+                </li>
+                <li class="breadcrumb-item active">@Model.Title</li>
+            </ol>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card rounded py-3 bg-white">
+                    <div class="category text-center">
+                        <a href="/tin-tuc/@Model.Categories.Slug">@Model.Categories.Title</a>
+                    </div>
+                    <div class="title text-center">
+                        <h3 class="text-dark text-center">@Model.Title</h3>
+                        <hr class="border-light w-25" />
+                    </div>
+                    <div class="content p-3">
+                        @Html.Raw(Model.Content)
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                @await Component.InvokeAsync("CategoryList")
+            </div>
+        </div>
+    </div>
+</div>

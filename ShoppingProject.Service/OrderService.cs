@@ -4,8 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ShoppingProject.Data.Interface;
-using System.Linq;
-using System;
 using ShoppingProject.Utilities.Helper;
 using ShoppingProject.Service.Model;
 
@@ -43,10 +41,15 @@ namespace ShoppingProject.Service
                 {
                     OrderId = order.OrderId,
                     Price = product.PromotionPrice ?? product.Price,
-                    Quantity = item.Quantity
+                    Quantity = item.Quantity,
+                    ProductId = item.ProductId
                 });
             }
             await _unitOfWork.SaveChangesAsync();
+        }
+        public async Task<Order> GetOrderById(string orderId)
+        {
+            return await _orderRepository.FindAll(a => a.OrderId == orderId).Include(a=>a.OrderDetails).ThenInclude(a=>a.Product).FirstOrDefaultAsync();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace ShoppingProject.Web
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IPostService, PostService>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IOrderService, OrderService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             return services;
         }

@@ -43,7 +43,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Folder Include="Models\Product\" />
-		<Folder Include="wwwroot\lib\" />
 		<Folder Include="wwwroot\Upload\Houses\" />
 	</ItemGroup>
 	<ItemGroup>

@@ -13641,7 +13641,7 @@ footer.blockquote-footer {
 .product-page-main {
   padding: 30px; }
   .owl-item .item {
-    border: 1px solid #f4f4f4;
+    border: 0 !important;
     border-radius: 2px;
     background-color: #f8f8f8; }
   .owl-item.current .item {

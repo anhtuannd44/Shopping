@@ -1,0 +1,65 @@
+﻿@model ShoppingProject.Web.Models.BlogViewModel
+@{
+    ViewData["Title"] = Model.Data.CurrentPage == 1 ? Model.Category.Title ?? "Tin tức" : Model.Category.Title ?? "Tin tức" + " - Trang " + Model.Data.CurrentPage;
+    Layout = "_Layout";
+}
+<div class="blog-design">
+    <div class="container">
+        <div>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/" data-original-title="" title="">
+                        <i class="icofont-home"></i> Trang chủ
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="/tin-tuc" data-original-title="" title="">
+                        Tin tức
+                    </a>
+                </li>
+                <li class="breadcrumb-item active">@(Model.Category.Title??"Tất cả chuyên mục")</li>
+            </ol>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                @foreach (var item in Model.Data.Results)
+                {
+                    <div class="card rounded mb-3" style="border-radius: 10px !important">
+                        <div class="blog-box blog-list row">
+                            <div class="col-sm-5">
+                                <div class="image-box ratio-4-3">
+                                    @if (string.IsNullOrEmpty(item.CoverUrl))
+                                    {
+                                        <img class="img-fluid rounded image" src="~/lib/theme/assets/images/no-picture.jpg" alt="">
+                                    }
+                                    else
+                                    {
+                                        <img class="img-fluid rounded image" src="@item.CoverUrl" alt="">
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="blog-details py-3">
+                                    <div class="blog-date mb-0"><span>@item.DateCreated.Day</span> @item.DateCreated.ToString("MMMM, yyyy")</div>
+                                    <p class="mb-3 mt-0 text-white-50">@item.Categories.Title</p>
+                                    <h5 class="mb-0 title">@item.Title</h5>
+                                    <hr>
+                                    <p class="m-0 text-white-50">@item.Description</p>
+                                </div>
+                                <div class="text-right p-3">
+                                    <a href="/tin-tuc/@item.Categories.Slug/@item.Slug" class="btn btn-outline-primary btn-sm">Xem thêm</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="pb-3">
+                    @await Component.InvokeAsync("Pager", Model.Data)
+                </div>
+            </div>
+            <div class="col-md-3">
+               @await Component.InvokeAsync("CategoryList")
+            </div>
+        </div>
+    </div>
+</div>

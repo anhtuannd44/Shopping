@@ -7,7 +7,6 @@ using ShoppingProject.Domain.DomainModels;
 using ShoppingProject.Domain.Enums;
 using ShoppingProject.Service.Interface;
 using ShoppingProject.Service.Model;
-using ShoppingProject.Utilities.Enums;
 using ShoppingProject.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -16,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace ShoppingProject.Web.Controllers
 {
-    [Route("hoan-tat-don-hang")]
+    [Route("dat-hang")]
     public class CheckoutController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -34,15 +33,20 @@ namespace ShoppingProject.Web.Controllers
             _userManager = userManager;
             _logger = logger;
         }
-
+        [HttpGet]
+        [Route("hoan-tat-don-hang")]
         public IActionResult Index()
         {
+
             var session = HttpContext.Session.GetString("cart");
             if (session == null)
                 return RedirectToAction(nameof(Index), "Home");
             return View();
         }
-        public async Task<IActionResult> Index([Bind("CustomerName,CustomerAddress,CustomerPhone,CustomerMessage")] Order order)
+
+        [HttpPost]
+        [Route("hoan-tat-don-hang")]
+        public async Task<IActionResult> Index([Bind("CustomerName,CustomerAddress,CustomerPhoneNumber,CustomerMessage")] Order order)
         {
             var session = HttpContext.Session.GetString("cart");
             if (session == null)
@@ -59,7 +63,8 @@ namespace ShoppingProject.Web.Controllers
                 try
                 {
                     await _orderService.CreateNewOrder(order, cart);
-                    return RedirectToAction(nameof(Success));
+                    HttpContext.Session.Clear();
+                    return RedirectToAction(nameof(Details), new { orderId = order.OrderId });
                 }
                 catch (Exception ex)
                 {
@@ -70,9 +75,15 @@ namespace ShoppingProject.Web.Controllers
             }
             return View(order);
         }
-        public IActionResult Success()
+        [Route("chi-tiet-don-hang")]
+        public async Task<IActionResult> Details(string orderId)
         {
-            return View();
+            if (string.IsNullOrEmpty(orderId))
+                return NotFound();
+            var order = await _orderService.GetOrderById(orderId);
+            if (order == null)
+                return NotFound();
+            return View(order);
         }
     }
 }

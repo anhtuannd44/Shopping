@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ShoppingProject.Data.Interface;
 using System;
+using ShoppingProject.Utilities;
+using ShoppingProject.Domain.Enums;
+using System.Linq;
 
 namespace ShoppingProject.Service
 {
@@ -32,6 +35,10 @@ namespace ShoppingProject.Service
         public async Task<PostCategory> GetCategoryItem(int? categoryId)
         {
             return await _postCategoryRepository.FindByIdAsync(categoryId);
+        }
+        public async Task<PostCategory> GetCategoryItemBySlug(string slug)
+        {
+            return await _postCategoryRepository.FindAll(a => a.Slug == slug).FirstOrDefaultAsync();
         }
         public async Task<bool> IsSlugCategoryExisted(string slug, int? categoryId = null)
         {
@@ -78,6 +85,10 @@ namespace ShoppingProject.Service
         {
             return await _postRepository.FindByIdAsync(id);
         }
+        public async Task<Post> GetPostItemBySlug(string slug)
+        {
+            return await _postRepository.FindAll(a => a.Slug == slug && a.Status == Status.Public, a => a.Categories).FirstOrDefaultAsync();
+        }
         public async Task UpdatePost(Post post)
         {
             var editItem = await _postRepository.FindByIdAsync(post.PostId);
@@ -101,6 +112,29 @@ namespace ShoppingProject.Service
         public async Task<bool> PostExists(int id)
         {
             return await _postRepository.FindAll(e => e.PostId == id).AnyAsync();
+        }
+
+        public PagedResult<Post> GetAllPaging(int? categoryId, string keyword, int page, int pageSize)
+        {
+            var query = _postRepository.FindAll(x => x.Status == Status.Public, a=>a.Categories);
+            if (!string.IsNullOrEmpty(keyword))
+                query = query.Where(x => x.Title.Contains(keyword));
+            if (categoryId.HasValue)
+                query = query.Where(x => x.CategoryId == categoryId.Value);
+
+            int totalRow = query.Count();
+
+            query = query.OrderByDescending(x => x.DateCreated)
+                .Skip((page - 1) * pageSize).Take(pageSize);
+
+            var paginationSet = new PagedResult<Post>()
+            {
+                Results = query.ToListAsync().Result,
+                CurrentPage = page,
+                RowCount = totalRow,
+                PageSize = pageSize
+            };
+            return paginationSet;
         }
     }
 }

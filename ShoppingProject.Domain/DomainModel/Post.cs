@@ -36,7 +36,8 @@ namespace ShoppingProject.Domain.DomainModels
         [Display(Name = "Tác giả")]
         public string AuthorId { set; get; }
         [Display(Name = "Chuyên mục")]
-        public int? CategoryId { get; set; }
+        [Required(ErrorMessage="Bạn phải chọn chuyên mục cho bài viết")]
+        public int CategoryId { get; set; }
         public virtual ApplicationUser Author { set; get; }
         public virtual PostCategory Categories { get; set; }
     }
