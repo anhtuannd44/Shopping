@@ -20,6 +20,7 @@ namespace ShoppingProject.Web
             services.AddTransient<IPostService, PostService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IQuestionService, QuestionService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             return services;
         }

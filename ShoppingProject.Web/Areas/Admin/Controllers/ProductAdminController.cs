@@ -35,7 +35,7 @@ namespace ShoppingProject.Web.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,Title,Content,Keyword,Slug,CoverUrl,Status,Price,PricePromotion,CoverUrl,Description,ShortDescription,DeliveryDescription")] Product product, string[] selectImage)
+        public async Task<IActionResult> Create([Bind("Title,Content,Keyword,Slug,CoverUrl,Status,Price,PricePromotion,CoverUrl,Description,ShortDescription,DeliveryDescription")] Product product, string[] selectImage)
         {
             if (ModelState["Slug"].ValidationState == ModelValidationState.Invalid || string.IsNullOrEmpty(product.Slug))
             {
@@ -126,7 +126,7 @@ namespace ShoppingProject.Web.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 _logger.LogInformation(ex, "Có lỗi khi xóa sản phẩm");
-                return Json(new ResultViewModel(CustomStatusCode.Success, "Thất bại! Có lỗi xảy ra khi xóa bài viết"));
+                return Json(new ResultViewModel(CustomStatusCode.InternalServerError, "Thất bại! Có lỗi xảy ra khi xóa bài viết"));
             }
         }
     }

@@ -132,7 +132,7 @@ namespace ShoppingProject.Web.Areas.Admin.Controllers
             catch (DbUpdateException ex)
             {
                 //_logger.Log(LogLevel.Error, ex, ex.Message);
-                return Json(new ResultViewModel(CustomStatusCode.Success, "Thất bại! Có lỗi xảy ra khi xóa dữ liệu"));
+                return Json(new ResultViewModel(CustomStatusCode.InternalServerError, "Thất bại! Có lỗi xảy ra khi xóa dữ liệu"));
             }
         }
     }

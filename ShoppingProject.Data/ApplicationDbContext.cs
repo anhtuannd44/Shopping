@@ -15,11 +15,12 @@ namespace ShoppingProject.Data
         public virtual DbSet<PostCategory> PostCategories { set; get; }
         public virtual DbSet<Post> Posts { set; get; }
         public virtual DbSet<Product> Products { set; get; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderDetails> OrderDetails { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetails> OrderDetails { get; set; }
         public virtual DbSet<Province> Province { set; get; }
         public virtual DbSet<District> District { set; get; }
         public virtual DbSet<Ward> Ward { set; get; }
+        public virtual DbSet<Question> Question { set; get; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -10,8 +10,8 @@ using ShoppingProject.Data;
 namespace ShoppingProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210407143443_CreateDb")]
-    partial class CreateDb
+    [Migration("20210409045624_createDb")]
+    partial class createDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -271,7 +271,6 @@ namespace ShoppingProject.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CustomerMessage")
-                        .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
@@ -343,7 +342,7 @@ namespace ShoppingProject.Data.Migrations
                     b.Property<string>("AuthorId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
@@ -516,6 +515,29 @@ namespace ShoppingProject.Data.Migrations
                     b.ToTable("Province");
                 });
 
+            modelBuilder.Entity("ShoppingProject.Domain.DomainModels.Question", b =>
+                {
+                    b.Property<int>("QuestionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Reply")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("QuestionId");
+
+                    b.ToTable("Question");
+                });
+
             modelBuilder.Entity("ShoppingProject.Domain.DomainModels.Ward", b =>
                 {
                     b.Property<int>("WardId")
@@ -639,7 +661,8 @@ namespace ShoppingProject.Data.Migrations
                     b.HasOne("ShoppingProject.Domain.DomainModels.PostCategory", "Categories")
                         .WithMany("Posts")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Author");
 

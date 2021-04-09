@@ -202,3 +202,21 @@ input::placeholder {
     font-size: 1.25rem;
     font-weight: 300
 }
+.btn-buy-now {
+    padding: 1.375rem 5.75rem;
+    font-size: 1.75rem
+}
+.btn-outline-white {
+    color: #fff;
+    border-color: #fff;
+}
+    .btn-outline-white:hover {
+        background: #fff;
+        color: #00233C
+    }
+.header-btn.btn-air-primary {
+    border: 1px solid #fff !important;
+}
+.breadcrumb {
+    margin-bottom: 0 !important;
+}

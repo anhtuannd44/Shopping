@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ShoppingProject.Data.Migrations
 {
-    public partial class CreateDb : Migration
+    public partial class createDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -106,6 +106,21 @@ namespace ShoppingProject.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Province", x => x.ProvinceId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Question",
+                columns: table => new
+                {
+                    QuestionId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Reply = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Question", x => x.QuestionId);
                 });
 
             migrationBuilder.CreateTable(
@@ -222,7 +237,7 @@ namespace ShoppingProject.Data.Migrations
                     CustomerName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     CustomerAddress = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     CustomerPhoneNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CustomerMessage = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    CustomerMessage = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
                     PaymentMethod = table.Column<int>(type: "int", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -256,7 +271,7 @@ namespace ShoppingProject.Data.Migrations
                     CoverUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
                     AuthorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    CategoryId = table.Column<int>(type: "int", nullable: true)
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -272,7 +287,7 @@ namespace ShoppingProject.Data.Migrations
                         column: x => x.CategoryId,
                         principalTable: "PostCategory",
                         principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.SetNull);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -491,6 +506,9 @@ namespace ShoppingProject.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProductImage");
+
+            migrationBuilder.DropTable(
+                name: "Question");
 
             migrationBuilder.DropTable(
                 name: "Ward");

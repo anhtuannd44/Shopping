@@ -13,7 +13,7 @@
 <body class="landing-page">
     <header>
         <div class="top-header" id="topHeader">
-            <div class="container">
+            <div class="container-modify">
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="py-4">
@@ -21,14 +21,14 @@
                         </div>
                     </div>
                     <div class="col-md-6 text-right">
-                        <a href="#" class="btn btn-primary btn-air-primary btn-lg wow pulse">ĐẶT HÀNG NGAY</a>
+                        <a href="#" class="btn btn-primary btn-air-primary header-btn btn-lg wow pulse">ĐẶT HÀNG NGAY</a>
                         <br />
-                        <a href="#" class="btn btn-outline-primary btn-air-primary btn-lg mt-3 wow pulse">Gọi ngay: 1800 1548</a>
+                        <a href="#" class="btn btn-outline-white btn-air-white btn-lg mt-3 wow pulse"> <i class="fa fa-phone"></i> Gọi ngay: 1800 1548</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="main-header fixed-top w-100" id="mainHeader">
+        <div class="main-header w-100" id="mainHeader">
             <div class="container">
                 <nav class="navbar-expand-xl sticky-top" id="sidebar-menu">
                     <button class="navbar-toggler navabr_btn-set custom_nav" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
@@ -36,10 +36,10 @@
                         <ul class="navbar-nav navbar_nav_modify text-uppercase nav-menus" id="scroll-spy">
                             <li class="nav-item"><a class="nav-link" href="/">TRANG CHỦ</a></li>
                             <li class="nav-item"><a class="nav-link active" href="#dashboards">RIBMAX - ĐẬM CHẤT ĐÀN ÔNG</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#components">SỨC KHỎE SINH LÝ NAM</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#components">MUA NGAY</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#components">HỎI ĐÁP</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#components">LIÊN HỆ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/tin-tuc">SỨC KHỎE SINH LÝ NAM</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/san-pham">MUA NGAY</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/hoi-dap">HỎI ĐÁP</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/lien-he">LIÊN HỆ</a></li>
                             <li class="cart-nav onhover-dropdown mini-cart" id="miniCart">
                             </li>
                         </ul>
@@ -142,6 +142,17 @@
         $(document).ready(function () {
             loadMiniCart();
             exitSpinner();
+            window.onscroll = function () { myFunction() };
+
+            var header = document.getElementById("mainHeader");
+            var sticky = header.offsetTop;
+            function myFunction() {
+                if (window.pageYOffset > sticky) {
+                    header.classList.add("fixed-top");
+                } else {
+                    header.classList.remove("fixed-top");
+                }
+            }
         });
         function loadMiniCart() {
             $("#miniCart").load("/Cart/MiniCart");

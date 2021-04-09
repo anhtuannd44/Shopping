@@ -131,7 +131,7 @@ namespace ShoppingProject.Web.Areas.Admin.Controllers
             }
             catch (Exception)
             {
-                return Json(new ResultViewModel(CustomStatusCode.Success, "Thất bại! Có lỗi xảy ra khi xóa bài viết"));
+                return Json(new ResultViewModel(CustomStatusCode.InternalServerError, "Thất bại! Có lỗi xảy ra khi xóa bài viết"));
             }
         }
     }

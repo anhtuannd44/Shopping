@@ -12,10 +12,8 @@
     <None Remove="Migrations\**" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\20210407143443_CreateDb.cs" />
-    <Compile Include="Migrations\20210407143443_CreateDb.Designer.cs" />
-    <Compile Include="Migrations\20210408150621_SetMessageOrderAllowNull.cs" />
-    <Compile Include="Migrations\20210408150621_SetMessageOrderAllowNull.Designer.cs" />
+    <Compile Include="Migrations\20210409045624_createDb.cs" />
+    <Compile Include="Migrations\20210409045624_createDb.Designer.cs" />
     <Compile Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
   </ItemGroup>
 

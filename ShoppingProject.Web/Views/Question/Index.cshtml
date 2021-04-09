@@ -1,0 +1,52 @@
+﻿@model ShoppingProject.Web.Models.QuestionViewModel
+@{
+    ViewData["Title"] = "Hỏi - Đáp" + (Model.Data.CurrentPage == 1 ?"": " - Trang " + Model.Data.CurrentPage.ToString());
+    Layout = "_Layout";
+    var i = 1;
+}
+<div class="blog-design default-according">
+    <div class="container">
+        <div>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/" data-original-title="" title="">
+                        <i class="icofont-home"></i> Trang chủ
+                    </a>
+                </li>
+                <li class="breadcrumb-item active">Hỏi - Đáp</li>
+            </ol>
+        </div>
+        <div class="row">
+            <div class="col-md-9" id="accordionoc">
+                @foreach (var item in Model.Data.Results)
+                {
+                    <div class="card rounded">
+                        <div class="bg-light rounded-top">
+                            <div class="mb-0 text-dark h5 d-flex align-items-center">
+                                <div class="px-3">
+                                    <i class="fa fa-question-circle"></i>
+                                </div>
+                                <button class="btn btn-link px-0 py-2 text-left" data-toggle="collapse" data-target="#qs_@item.QuestionId" aria-expanded="true" aria-controls="collapseicon">
+                                    @item.Title
+                                </button>
+                            </div>
+                        </div>
+                        <div class="collapse @(i==1?"show":"")" id="qs_@item.QuestionId" aria-labelledby="collapseicon" data-parent="#accordionoc" style="">
+                            <hr class="m-0" />
+                            <div class="card-body bg-light pl-5">
+                                @Html.Raw(item.Reply)
+                            </div>
+                        </div>
+                    </div>
+                    i++;
+                }
+                <div class="pb-3">
+                    @await Component.InvokeAsync("Pager", Model.Data)
+                </div>
+            </div>
+            <div class="col-md-3">
+               @await Component.InvokeAsync("CategoryList")
+            </div>
+        </div>
+    </div>
+</div>

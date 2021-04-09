@@ -1,0 +1,71 @@
+﻿@using ShoppingProject.Domain.Enums
+@model ShoppingProject.Domain.DomainModels.Question
+
+@{ ViewData["Title"] = "Thêm câu hỏi";
+    Layout = "_AdminLayout"; }
+
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/Admin" data-original-title="" title="">
+                <i class="icofont-home"></i> Bảng điều khiển
+            </a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-action="Index" data-original-title="" title="">
+                Câu hỏi
+            </a>
+        </li>
+        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+    </ol>
+</div>
+
+<form asp-action="Create">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>@ViewData["Title"]</h5>
+                    </div>
+                    <div class="card-body">
+                        @Html.AntiForgeryToken()
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Title"></label>
+                            <input class="form-control" asp-for="Title" type="text" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Reply"></label>
+                            <textarea class="form-control" asp-for="Reply"></textarea>
+                            <span asp-validation-for="Reply" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Xuất bản</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label asp-for="Status" class="control-label"></label>
+                            <select asp-for="Status" asp-items="Html.GetEnumSelectList<Status>()" class="form-control select2"></select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+                        <button class="btn btn-primary btn-block" type="submit" data-original-title="" title="">Hoàn tất</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+@section scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @await Html.PartialAsync("_SummernotePartial", new { height = 800, selector = "#Reply" })
+}
