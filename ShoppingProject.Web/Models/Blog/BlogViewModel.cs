@@ -5,11 +5,9 @@ using System.Collections.Generic;
 
 namespace ShoppingProject.Web.Models
 {
-    public class BlogViewModel
+    public class OrderViewModel
     {
-        public PagedResult<Post> Data { get; set; }
-
-        public PostCategory Category { set; get; }
+        public PagedResult<Order> Data { get; set; }
 
         public int? PageSize { set; get; }
 

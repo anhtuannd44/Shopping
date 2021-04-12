@@ -34,7 +34,7 @@ namespace ShoppingProject.Domain.DomainModels
         public string DeliveryDescription { get; set; }
         [Display(Name = "Từ khóa SEO", Prompt = "Nhập nhiều từ khóa, cách nhau bằng dấu phẩy ','")]
         public string Keyword { get; set; }
-        
+
 
         //Thông tin giá cả
         [Display(Name = "Giá bán", Prompt = "VD: 20000")]
@@ -59,5 +59,13 @@ namespace ShoppingProject.Domain.DomainModels
 
         [NotMapped]
         public int Quantity { get; set; }
+        [NotMapped]
+        public string PriceView
+        {
+            get
+            {
+                return this.Price.ToString("C0");
+            }
+        }
     }
 }

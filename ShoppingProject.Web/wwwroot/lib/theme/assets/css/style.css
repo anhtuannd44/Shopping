@@ -1363,7 +1363,6 @@ fieldset .input-group-lg .touchspin {
     .default-according .card .card-header h5 {
       margin-top: 2px; }
   .default-according .card .card-body {
-    border: 1px solid #ecf3fa;
     border-top: none; }
 
 .default-according.style-1 button {
@@ -9360,9 +9359,6 @@ table.dataTable.display tbody tr.odd > .sorting_1 {
 .form-bookmark .form-group select {
   font-size: 14px; }
 
-.form-bookmark .form-group .select2-container .select2-selection--single {
-  border-color: #ced4da; }
-
 .form-bookmark .form-group .select2 {
   width: 100% !important; }
 
@@ -14980,12 +14976,16 @@ footer.blockquote-footer {
 
 .select2-container .select2-selection--single {
   border-radius: 0.25rem !important;
-  border-color: #f6f7fb;
-  height: 40px !important;
+  border: 1px solid #ced4da;
+  height: calc(1.5em + .75rem + 2px) !important;
+  line-height: 1.5;
   padding: 5px; }
-
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 1.5
+}
 .job-pagination {
-  margin-bottom: 30px; }
+    margin-bottom: 30px;
+}
   .job-pagination nav ul {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
@@ -22838,8 +22838,6 @@ body[class*='dark-'] .for-light {
 
  .form-group {
   margin-bottom: 30px; }
-   .form-group .form-control {
-    border: 1px solid #efefef; }
    .form-group .col-form-label {
     padding-bottom: 0;
     padding-top: 0; }
@@ -22849,7 +22847,6 @@ body[class*='dark-'] .for-light {
        .form-group .col-form-label .select2-container--default .selection .select2-selection .select2-search__field {
         padding: 2px; }
        .form-group .col-form-label .select2-container--default .select2-selection--multiple {
-        border: 1px solid #efefef;
         max-width: 100%; }
          .form-group .col-form-label .select2-container--default .select2-selection--multiple .select2-selection__rendered li {
           margin-top: 6px !important; }
@@ -22862,12 +22859,9 @@ body[class*='dark-'] .for-light {
  textarea.form-control,  .note-editor.note-airframe,  .note-editor.note-frame {
     border-radius: 10px;
 }
- .selection .select2-selection {
-    border-radius: 99px !important;
 }
  .select2-container .select2-selection--single:focus {
     outline: 0 !important;
-    border-radius: 99px !important
 }
 .note-editor .note-editing-area {
     position: unset !important;
@@ -22969,7 +22963,6 @@ body[class*='dark-'] .for-light {
   color: #fff !important; }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
-  top: 7px !important;
   right: 10px !important; }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
@@ -27012,4 +27005,7 @@ footer li a {
     background-color: #ddd !important;
     border-color: #ddd !important;
     padding: 8px 12px;
+}
+.table td, .table th {
+    vertical-align: inherit;
 }

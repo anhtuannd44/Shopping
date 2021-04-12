@@ -1,19 +1,18 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ShoppingProject.Domain.Enums
 {
     public enum OrderStatus
 	{
-        [Description("Đơn mới")]
-        New,
-        [Description("Đang xử lý")]
-        InProgress,
-        [Description("Trả lại hàng")]
-        Returned,
-        [Description("Đã hủy")]
-        Cancelled,
-        [Description("Đã hoàn tất")]
-        Completed
+        [Display(Name = "Đơn mới")]
+        New = 0,
+        [Display(Name = "Đang xử lý")]
+        InProgress = 1,
+        [Display(Name = "Trả lại hàng")]
+        Returned = 2,
+        [Display(Name = "Đã hủy")]
+        Cancelled =3,
+        [Display(Name = "Đã hoàn tất")]
+        Completed = 4
     }
 }

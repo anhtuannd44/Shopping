@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ShoppingProject.Data.Interface;
 using System.Linq;
 using System;
+using ShoppingProject.Domain.Enums;
 
 namespace ShoppingProject.Service
 {
@@ -26,9 +27,12 @@ namespace ShoppingProject.Service
             _productRepository = productRepository;
             _productImageRepository = productImageRepository;
         }
-        public async Task<List<Product>> GetAllProducts()
+        public async Task<List<Product>> GetAllProducts(Status? status = null)
         {
-            return await _productRepository.FindAll().ToListAsync();
+            var result = _productRepository.FindAll();
+            if (status != null)
+                result = result.Where(a => a.Status == status);
+            return await result.ToListAsync();
         }
         public async Task<Product> GetProductByIdNotInclude(int id)
         {

@@ -1,0 +1,113 @@
+﻿@model ShoppingProject.Web.Models.OrderViewModel
+@{
+    ViewData["Title"] = "Đơn hàng";
+    Layout = "_AdminLayout";
+    var i = Model.Data.FirstRowOnPage;
+}
+
+<div class="container-fluid">
+    <div class="row align-items-center">
+        <div class="col-6">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/~" data-original-title="" title="">
+                        <i class="icofont-home"></i> Bảng điều khiển
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a asp-action="Index" data-original-title="" title="">
+                        Bài viết
+                    </a>
+                </li>
+                <li class="breadcrumb-item active">@ViewData["Title"]</li>
+            </ol>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-primary">Thêm mới</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <h5>Danh sách đơn hàng</h5>
+        </div>
+        <div class="card-body">               
+            @if (Model.Data.Results.Count() > 0)
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%">
+                                    STT
+                                </th>
+                                <th>
+                                    Mã đơn hàng
+                                </th>
+                                <th>
+                                    Chi tiết đơn hàng
+                                </th>
+                                <th>Người đặt hàng</th>
+                                <th>Thời gian</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Data.Results)
+                            {
+                                <tr id="td_@item.OrderId">
+                                    <td>
+                                        @i
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.OrderId">@item.OrderId</a>
+                                    </td>
+                                    <td>
+                                        @foreach (var detail in item.OrderDetails)
+                                        {
+                                            <p class="m-0">- @detail.Product.Title x @detail.Quantity</p>
+                                        }
+                                    </td>
+                                    <td>
+                                        <p class="m-0">@item.CustomerName</p>
+                                        <p class="m-0">@item.CustomerPhoneNumber</p>
+                                        <p class="m-0">@item.CustomerEmail</p>
+                                    </td>
+                                    <td>
+                                        @item.DateCreated.ToString("dd/MM/yyyy HH:mm")
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.OrderId" class="badge badge-warning"><i class="icofont-pencil-alt-2"></i></a>
+                                        <a href="#" class="badge badge-danger delete" data-id="@item.OrderId" data-name="@item.OrderId"><i class="icofont-ui-delete"></i></a>
+                                    </td>
+                                </tr>
+                                i++;
+                            }
+                        </tbody>
+                    </table>
+                    <div class="pb-3 pagination-light">
+                        @await Component.InvokeAsync("Pager", Model.Data)
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="text-center">
+                    <p class="">Chưa có dữ liệu</p>
+                    <a asp-action="Create" class="btn btn-gradient-primary">Thêm mới</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(".delete").click( function () {
+            var id = $(this).data("id");
+            var name = $(this).data("name");
+            deleteAjax(id, "@Url.Action("Delete")");
+        })
+    </script>
+}

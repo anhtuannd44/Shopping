@@ -5,9 +5,9 @@ namespace ShoppingProject.Domain.Enums
 {
     public enum PaymentMethod
     {
-        [Description("Thanh toán khi nhận hàng")]
+        [Display(Name = "Thanh toán khi nhận hàng")]
         CashOnDelivery,
-        [Description("Chuyển khoản")]
+        [Display(Name = "Chuyển khoản")]
         OnlineBanking
     }
 }

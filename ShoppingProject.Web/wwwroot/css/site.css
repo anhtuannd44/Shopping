@@ -220,3 +220,9 @@ input::placeholder {
 .breadcrumb {
     margin-bottom: 0 !important;
 }
+.pagination-dark {
+    color: #f8f9fa;
+}
+.product-quantity-area {
+    width: 100px;
+}

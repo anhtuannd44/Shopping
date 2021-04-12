@@ -1,0 +1,300 @@
+﻿@using ShoppingProject.Domain.Enums
+@model ShoppingProject.Domain.DomainModels.Order
+
+@{
+    ViewData["Title"] = "Thêm mới đơn hàng";
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/Admin" data-original-title="" title="">
+                <i class="icofont-home"></i> Bảng điều khiển
+            </a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-action="Index" data-original-title="" title="">
+                Đơn hàng
+            </a>
+        </li>
+        <li class="breadcrumb-item active">Thêm mới</li>
+    </ol>
+</div>
+
+<form asp-action="Edit" id="editOrder">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Chi tiết đơn hàng: <span class="text-primary">@ViewData["Title"]</span></h5>
+                        <p class="m-0">Thông tin chung</p>
+                    </div>
+                    <div class="card-body">
+                        @Html.AntiForgeryToken()
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
+                                    <label asp-for="CustomerName" class="control-label">Người đặt hàng</label>
+                                    <input asp-for="CustomerName" class="form-control" type="text" />
+                                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
+                                    <label asp-for="CustomerPhoneNumber" class="control-label"></label>
+                                    <input asp-for="CustomerPhoneNumber" class="form-control" type="text" />
+                                    <span asp-validation-for="CustomerPhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
+                                    <label asp-for="CustomerEmail" class="control-label"></label>
+                                    <input asp-for="CustomerEmail" class="form-control" type="text" />
+                                    <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
+                                    <label asp-for="CustomerAddress" class="control-label"></label>
+                                    <input asp-for="CustomerAddress" class="form-control" type="text" />
+                                    <span asp-validation-for="CustomerAddress" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="form-group">
+                                    <label asp-for="PaymentMethod" class="control-label"></label>
+                                    <select asp-for="PaymentMethod" asp-items="Html.GetEnumSelectList<PaymentMethod>()" class="form-control select2"></select>
+                                    <span asp-validation-for="PaymentMethod" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-12">
+                                <div class="form-group">
+                                    <label asp-for="CustomerMessage" class="control-label">Ghi chú đơn hàng của khách</label>
+                                    <textarea asp-for="CustomerMessage" class="form-control" rows="5"></textarea>
+                                    <span asp-validation-for="CustomerMessage" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Chi tiết các sản phẩm</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Tên sản phẩm</th>
+                                        <th class="text-right">Giá sản phẩm</th>
+                                        <th class="text-right">Giá bán</th>
+                                        <th class="text-center">Số lượng</th>
+                                        <th class="text-right">Thành tiền</th>
+                                        <th class="text-right"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orderDetails">
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="text-right mt-3">
+                            <button class="btn btn-sm btn-primary add-product" type="button">Thêm sản phẩm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Xuất bản</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label asp-for="OrderStatus" class="control-label"></label>
+                            <select asp-for="OrderStatus" asp-items="Html.GetEnumSelectList<OrderStatus>()" class="form-control select2"></select>
+                            <span asp-validation-for="OrderStatus" class="text-danger"></span>
+                        </div>
+                        <button class="btn btn-primary btn-block" id="btnSave" type="submit" data-original-title="" title="">Hoàn tất</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="x-tmpl-mustache" id="template-table-bill-details">
+    <tr>
+        <td class="details-product-id">{{{Products}}}</td>
+        <td class="text-right details-product-price">{{{ProductPrice}}}</td>
+        <td class="text-right details-price">
+            <input class="form-control text-right details-price-input" value="{{Price}}" type="text" />
+        </td>
+        <td class="text-center product-quantity-area">
+            <input class="form-control product-quantity text-center" value="{{Quantity}}" type="number" min="1" />
+        </td>
+        <td class="text-right total">{{{Total}}}</td>
+        <td class="text-right">
+            <a href="#" class="badge badge-danger details-delete"><i class="icofont-ui-delete"></i></a>
+        </td>
+    </tr>
+</script>
+
+@section scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        var products = [];
+        $(document).ready(function () {
+            loadProducts()
+        });
+
+        $(document).on("click", ".add-product", function () {
+            var template = $('#template-table-bill-details').html();
+            var productSelectHtml = getProductOptions(null);
+            var render = Mustache.render(template,
+                {
+                    Products: productSelectHtml,
+                    ProductPrice: formatter.format(0),
+                    Price: 0,
+                    Quantity: 1,
+                    Total: 0
+                });
+            $('#orderDetails').append(render);
+        })
+        function getProductOptions() {
+            var productArea = "<select class='form-control product-id'>";
+            productArea += "<option selected>Chọn sản phẩm</option>";
+            $.each(products, function (i, product) {
+                productArea += '<option value="' + product.ProductId + '">' + product.Title + '</option>';
+            });
+            productArea += "</select>";
+            return productArea;
+        }
+
+        $(document).on("change", ".product-id", function () {
+            loadDetailsRow($(this));
+        })
+        $(document).on("change", ".details-price-input", function () {
+            var elmTrParent = $(this).parent().parent();
+            var quantity = elmTrParent.children(".product-quantity-area").first().find('input').val();
+            elmTrParent.children(".total").first().html(formatter.format($(this).val() * quantity))
+        })
+        $(document).on("change", ".product-quantity", function () {
+            loadDetailsRow($(this));
+        })
+        function loadDetailsRow(elm) {
+            var elmTrParent = elm.parent().parent();
+            var productId = elmTrParent.children(".details-product-id").first().find("select").val();
+            if (productId == null)
+                return false;
+            $.each(products, function (i, product) {
+                if (product.ProductId == productId) {
+                    elmTrParent.children(".details-product-price").first().html(product.PriceView);
+                    var lastPrice = product.PromotionPrice == null ? product.Price : product.PromotionPrice;
+                    elmTrParent.children(".details-price").first().find("input").val(lastPrice);
+                    var quantity = elmTrParent.children(".product-quantity-area").first().find('input').val();
+                    elmTrParent.children(".total").first().html(formatter.format(lastPrice * quantity));
+                }
+            });
+        }
+
+        $(document).on("click", ".details-delete", function () {
+            $(this).parent().parent().remove();
+        })
+        function loadProducts() {
+            return $.ajax({
+                type: "GET",
+                url: "/Admin/OrderAdmin/GetAllProduct",
+                dataType: "json",
+                success: function (response) {
+                    products = response;
+                },
+                error: function () {
+                    Swal.fire(
+                        'Thất bại!',
+                        'Có lỗi xảy ra khi tải dữ liệu sản phẩm.',
+                        'error'
+                    )
+                }
+            });
+        }
+        var formatter = new Intl.NumberFormat("vi", {
+            style: "currency",
+            currency: "VND"
+        });
+        $('#btnSave').on('click', function (e) {
+            if ($('#editOrder').valid()) {
+                e.preventDefault();
+                var orderId = $("#OrderId").val();
+                var customerName = $("#CustomerName").val();
+                var customerPhoneNumber = $("#CustomerPhoneNumber").val();
+                var customerAddress = $("#CustomerAddress").val();
+                var customerEmail = $("#CustomerEmail").val();
+                var paymentMethod = $("#PaymentMethod").val();
+                var customerMessage = $("#CustomerMessage").val();
+                var orderStatus = $("#OrderStatus").val();
+
+                //Details
+                var billDetails = [];
+                $.each($('#orderDetails tr'), function (i, item) {
+                    billDetails.push({
+                        ProductId: $(item).children(".details-product-id").first().find("select").val(),
+                        Quantity: $(item).children(".product-quantity-area").first().find(".product-quantity").val(),
+                        Price: $(item).children(".details-price").first().find(".details-price-input").val(),
+                        OrderId: orderId
+                    });
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/OrderAdmin/Edit",
+                    data: {
+                        OrderId : orderId,
+                        CustomerName: customerName,
+                        CustomerPhoneNumber: customerPhoneNumber,
+                        CustomerAddress: customerAddress,
+                        CustomerEmail: customerEmail,
+                        PaymentMethod: paymentMethod,
+                        CustomerMessage: customerMessage,
+                        OrderStatus: orderStatus,
+                        OrderDetails: billDetails
+                    },
+                    dataType: "json",
+                    beforeSend: function () {
+                        loadSpinner();
+                    },
+                    success: function (response) {
+                        Swal.fire(
+                            'Thành công!',
+                            'Đơn hàng đã được cập nhật',
+                            'success'
+                        )
+                        exitSpinner();
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1500)
+                    },
+                    error: function () {
+                        Swal.fire(
+                            'Thất bại!',
+                            'Có lỗi xảy ra khi cập nhật dữ liệu.',
+                            'error'
+                        )
+                        exitSpinner();
+                    }
+                });
+                return false;
+            }
+        })
+
+        $(document).ajaxSend(function (e, xhr, options) {
+            if (options.type.toUpperCase() == "POST" || options.type.toUpperCase() == "PUT") {
+                var token = $('form').find("input[name='__RequestVerificationToken']").val();
+                xhr.setRequestHeader("RequestVerificationToken", token);
+            }
+        });
+    </script>
+}

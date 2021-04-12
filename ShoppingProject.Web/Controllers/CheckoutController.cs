@@ -46,7 +46,7 @@ namespace ShoppingProject.Web.Controllers
 
         [HttpPost]
         [Route("hoan-tat-don-hang")]
-        public async Task<IActionResult> Index([Bind("CustomerName,CustomerAddress,CustomerPhoneNumber,CustomerMessage")] Order order)
+        public async Task<IActionResult> Index([Bind("CustomerName,CustomerAddress,CustomerPhoneNumber,CustomerMessage,CustomerEmail")] Order order)
         {
             var session = HttpContext.Session.GetString("cart");
             if (session == null)

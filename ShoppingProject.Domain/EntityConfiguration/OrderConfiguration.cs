@@ -22,6 +22,9 @@ namespace ShoppingProject.Domain.EntityConfiguration
             builder.Property(a => a.CustomerPhoneNumber)
                 .IsRequired(true)
                 .HasMaxLength(50);
+            builder.Property(a => a.CustomerEmail)
+                .IsRequired(true)
+                .HasMaxLength(50);
             builder.Property(a => a.CustomerId)
                 .IsRequired(false);
             builder.HasOne<ApplicationUser>(a => a.Customer)

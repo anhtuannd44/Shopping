@@ -4,7 +4,7 @@
     Layout = "_Layout";
     var i = 1;
 }
-<div class="blog-design default-according">
+<div class="blog-design default-according pb-3">
     <div class="container">
         <div>
             <ol class="breadcrumb">
@@ -40,7 +40,7 @@
                     </div>
                     i++;
                 }
-                <div class="pb-3">
+                <div class="pb-3 pagination-dark">
                     @await Component.InvokeAsync("Pager", Model.Data)
                 </div>
             </div>

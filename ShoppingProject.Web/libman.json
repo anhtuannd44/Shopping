@@ -15,11 +15,7 @@
     },
     {
       "library": "twitter-bootstrap@4.5.3",
-      "destination": "wwwroot/lib/bootstrap/",
-      "files": [
-        "js/bootstrap.min.js",
-        "css/bootstrap.min.css"
-      ]
+      "destination": "wwwroot/lib/bootstrap/"
     },
     {
       "library": "jqueryui@1.12.1",
@@ -80,6 +76,10 @@
     {
       "library": "font-awesome@5.15.3",
       "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "mustache.js@2.3.0",
+      "destination": "wwwroot/lib/mustache/"
     }
   ]
 }

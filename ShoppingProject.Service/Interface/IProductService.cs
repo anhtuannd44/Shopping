@@ -1,4 +1,5 @@
 ﻿using ShoppingProject.Domain.DomainModels;
+using ShoppingProject.Domain.Enums;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,7 +7,7 @@ namespace ShoppingProject.Service.Interface
 {
     public interface IProductService
     {
-        Task<List<Product>> GetAllProducts();
+        Task<List<Product>> GetAllProducts(Status? status = null);
         Task<Product> GetProductById(int id);
         Task<Product> GetProductByIdNotInclude(int id);
         Task<Product> GetProductBySlug(string slug);

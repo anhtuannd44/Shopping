@@ -14,6 +14,8 @@
   <ItemGroup>
     <Compile Include="Migrations\20210409045624_createDb.cs" />
     <Compile Include="Migrations\20210409045624_createDb.Designer.cs" />
+    <Compile Include="Migrations\20210412142902_AddEmailToOrder.cs" />
+    <Compile Include="Migrations\20210412142902_AddEmailToOrder.Designer.cs" />
     <Compile Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
   </ItemGroup>
 
