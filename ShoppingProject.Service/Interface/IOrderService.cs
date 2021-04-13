@@ -13,5 +13,6 @@ namespace ShoppingProject.Service.Interface
         Task<Order> GetOrderById(string orderId);
         Task<PagedResult<Order>> GetAllPaging(OrderStatus? status, int page, int pageSize);
         Task UpdateOrder(Order order);
+        Task RemoveOrder(Order order);
     }
 }

@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShoppingProject.Service.Interface;
-using ShoppingProject.Web.DataMapper;
 using ShoppingProject.Web.Models;
 using System.Diagnostics;
 
@@ -14,6 +12,11 @@ namespace ShoppingProject.Web.Controllers
 
         [Route("/")]
         public IActionResult Index()
+        {
+            return View();
+        }
+        [Route("ribmax-dam-chat-dan-ong")]
+        public IActionResult Ribmax()
         {
             return View();
         }

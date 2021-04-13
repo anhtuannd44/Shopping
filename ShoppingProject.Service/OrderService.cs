@@ -44,7 +44,7 @@ namespace ShoppingProject.Service
                 await _orderDetailsRepository.AddAsync(new OrderDetails()
                 {
                     OrderId = order.OrderId,
-                    Price = product.PromotionPrice ?? product.Price,
+                    Price = item.Price.HasValue ? item.Price.Value : product.PromotionPrice ?? product.Price,
                     Quantity = item.Quantity,
                     ProductId = item.ProductId
                 });
@@ -98,7 +98,7 @@ namespace ShoppingProject.Service
                         orderDetailsList.Add(item);
                     else
                     {
-                        if (orderDetailsList.Any(a=>a.ProductId == item.ProductId && a.Price == item.Price))
+                        if (orderDetailsList.Any(a => a.ProductId == item.ProductId && a.Price == item.Price))
                             orderDetailsList.Find(a => a.ProductId == item.ProductId && a.Price == item.Price).Quantity += item.Quantity;
                         else
                             orderDetailsList.Add(item);
@@ -108,6 +108,11 @@ namespace ShoppingProject.Service
                 _orderDetailsRepository.RemoveRange(a => a.OrderId == order.OrderId);
                 await _orderDetailsRepository.CreateRangeAsync(orderDetailsList);
             }
+            await _unitOfWork.SaveChangesAsync();
+        }
+        public async Task RemoveOrder(Order order)
+        {
+            _orderRepository.Remove(order);
             await _unitOfWork.SaveChangesAsync();
         }
     }

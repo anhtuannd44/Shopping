@@ -47,8 +47,9 @@
                     <div class="product-price f-28">
                         @if (Model.PromotionPrice.HasValue)
                         {
-                            <h3>@string.Format("{0:C0}", Model.Price)</h3>
-                            <del>$350.00 </del>
+                            <h3>@string.Format("{0:C0}", Model.PromotionPrice)
+                                <del>@string.Format("{0:C0}", Model.Price)</del>
+                            </h3>
                         }
                         else
                         {

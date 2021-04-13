@@ -35,7 +35,7 @@ namespace ShoppingProject.Web.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Content,Keyword,Slug,CoverUrl,Status,Price,PricePromotion,CoverUrl,Description,ShortDescription,DeliveryDescription")] Product product, string[] selectImage)
+        public async Task<IActionResult> Create([Bind("Title,Content,Keyword,Slug,CoverUrl,Status,Price,PromotionPrice,CoverUrl,Description,ShortDescription,DeliveryDescription")] Product product, string[] selectImage)
         {
             if (ModelState["Slug"].ValidationState == ModelValidationState.Invalid || string.IsNullOrEmpty(product.Slug))
             {
@@ -44,9 +44,11 @@ namespace ShoppingProject.Web.Areas.Admin.Controllers
                 ModelState.Clear();
                 TryValidateModel(product);
             }
-
             if (await _productService.IsSlugProductExisted(product.Slug))
                 ModelState.AddModelError(nameof(product.Slug), "Đường dẫn đã tồn tại");
+
+            if (product.PromotionPrice.HasValue && product.PromotionPrice >= product.Price)
+                ModelState.AddModelError(nameof(product.PromotionPrice), "Giá khuyến mãi phải nhỏ hơn giá gốc");
 
             product.DateCreated = DateTime.Now;
             if (!ModelState.IsValid)
@@ -76,7 +78,7 @@ namespace ShoppingProject.Web.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Title,Content,Keyword,Slug,CoverUrl,Status,Price,PricePromotion,CoverUrl,Description,ShortDescription,DeliveryDescription")] Product product, string[] selectImage)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Title,Content,Keyword,Slug,CoverUrl,Status,Price,PromotionPrice,CoverUrl,Description,ShortDescription,DeliveryDescription")] Product product, string[] selectImage)
         {
             if (id != product.ProductId)
                 return NotFound();
@@ -90,6 +92,8 @@ namespace ShoppingProject.Web.Areas.Admin.Controllers
 
             if (await _productService.IsSlugProductExisted(product.Slug, product.ProductId))
                 ModelState.AddModelError(nameof(product.Slug), "Đường dẫn đã tồn tại");
+            if (product.PromotionPrice.HasValue && product.PromotionPrice >= product.Price)
+                ModelState.AddModelError(nameof(product.PromotionPrice), "Giá khuyến mãi phải nhỏ hơn giá gốc");
 
             if (!ModelState.IsValid)
             {

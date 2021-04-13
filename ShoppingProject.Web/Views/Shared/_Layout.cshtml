@@ -33,9 +33,9 @@
                 <nav class="navbar-expand-xl sticky-top" id="sidebar-menu">
                     <button class="navbar-toggler navabr_btn-set custom_nav" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
                     <div class="navbar-collapse justify-content-start collapse hidenav" id="navbarDefault">
-                        <ul class="navbar-nav navbar_nav_modify text-uppercase nav-menus" id="scroll-spy">
+                        <ul class="navbar-nav navbar_nav_modify text-uppercase nav-menus" id="headerMenu">
                             <li class="nav-item"><a class="nav-link" href="/">TRANG CHỦ</a></li>
-                            <li class="nav-item"><a class="nav-link active" href="#dashboards">RIBMAX - ĐẬM CHẤT ĐÀN ÔNG</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/ribmax-dam-chat-dan-ong">RIBMAX - ĐẬM CHẤT ĐÀN ÔNG</a></li>
                             <li class="nav-item"><a class="nav-link" href="/tin-tuc">SỨC KHỎE SINH LÝ NAM</a></li>
                             <li class="nav-item"><a class="nav-link" href="/san-pham">MUA NGAY</a></li>
                             <li class="nav-item"><a class="nav-link" href="/hoi-dap">HỎI ĐÁP</a></li>
@@ -54,48 +54,53 @@
             <div class="footer-1 py-3 border-top">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-5">
-                            <div class="footer-title">
-                                <h3><span>Thương </span><span class="text">Hiệu</span></h3>
-                            </div>
+                        <div class="col-md-3">
                             <div class="footer-content">
-                                CÔNG TY CỔ PHẦN DƯỢC PHẨM ECO<br />
-                                Giấy chứng nhận ĐKKD số 0102637020 do sở Kế hoạch và Đầu tư TP. Hà Nội cấp ngày 29/01/2008<br />
-                                Địa chỉ: 148 Hoàng Hoa Thám, phường 12, quận Tân Bình, TP.Hồ Chí Minh<br />
-                                180 Trường Chinh, phường Khương Thượng, quận Đống Đa, TP. Hà Nội<br />
-                                Điện thoại: (84 28) 62936629 - 62936630 - Email: tuvanykhoa@alipas.com.vn<br />
-                                Bản quyền © 2014 thuộc về ECO PHARMA.
+                                <div>
+                                    <img src="~/images/Logo-Header.png" height="65" />
+                                    <img src="~/images/TUE-DUC.png" height="65" />
+                                </div>
+                                <p class="mt-3">
+                                    Tuyên ngôn của CEO: Kiên trì, không ngừng học hỏi, đổi mới sáng tạo, kỷ luật & Lấy con người làm trọng tâm là cam kết như Vàng ròng của doanh chủ, không phải mục tiêu chính là Lợi nhuận.
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="footer-title">
-                                <p>SINH LÝ NAM GIỚI</p>
+                                <p>LIÊN KẾT HỮU ÍCH</p>
                             </div>
                             <div class="footer-content">
                                 <ul>
-                                    <li><a href="/blog/danh-muc/17/cong-dong-chu-nha">Cộng đồng chủ nhà</a></li>
-                                    <li><a href="/Host">Trở thành chủ nhà</a></li>
-                                    <li><a href="/trang/25/dich-vu-cung-cap">Dịch vụ cung cấp</a></li>
-                                    <li><a href="/trang/26/thong-tin-hoi-dap">Thông tin hỏi - đáp</a></li>
-                                    <li><a href="/trang/27/huong-dan-su-dung">Hướng dẫn sử dụng</a></li>
-                                    <li><a href="/trang/28/phan-hoi---gop-y">Phản hồi - Góp ý</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="footer-title">
-                                <p>LIÊN KẾT NHANH</p>
-                            </div>
-                            <div class="footer-content">
-                                <ul>
-                                    <li><a href="https://www.agoda.com/">Agoda.com</a></li>
-                                    <li><a href="https://www.booking.com/">Booking.com</a></li>
-                                    <li><a href="https://www.luxstay.com/">Luxstay.vn</a></li>
-                                    <li><a href="https://www.traveloka.com/">Traveloka.com</a></li>
+                                    <li><a href="/">Trang chủ</a></li>
+                                    <li><a href="/ribmax-dam-chat-dan-ong">Ribmax - Đậm chất đàn ông</a></li>
+                                    <li><a href="/tin-tuc">Sức khỏe sinh lý nam</a></li>
+                                    <li><a href="/san-pham">Sản phẩm</a></li>
+                                    <li><a href="/hoi-dap">Hỏi - Đáp</a></li>
+                                    <li><a href="/lien-he">Liên hệ</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-md-3">
+                            <div class="footer-title">
+                                <p>LIÊN LẠC</p>
+                            </div>
+                            <div class="footer-content">
+                                <ul>
+                                    <li>Email:<br/>
+                                        <a class="ml-3 small" href="https://www.agoda.com/">tueduc315@gmail.com</a>
+                                        <br />
+                                        <a class="ml-3 small" href="#">tueduc.cskh@gmail.com</a>
+                                    </li>
+                                    <li class="mt-2"><a href="tel:0911828288" class="small">Số điện thoại: 0911 82 82 88</a></li>
+                                    <li class="mt-2"><span class="small">Thời Gian Làm Việc:</span><br />
+                                        <a class="small ml-3">Thứ 2 – Thứ 6 : 08:00 – 17:00</a>
+                                        <br/>
+                                        <a class="small ml-3">Thứ 7 : 08:00 – 12:00</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <div class="footer-title">
                                 <P>LIÊN KẾT VỚI CHÚNG TÔI</P>
                             </div>
@@ -104,7 +109,6 @@
                                     <a href="#" class="btn btn-social-icon btn-facebook btn-rounded" target="_blank"><i class="icofont-facebook"></i></a>
                                     <a href="#" class="btn btn-social-icon btn-youtube btn-rounded" target="_blank"><i class="icofont-youtube"></i></a>
                                 </div>
-                                <p class="small font-italic">Thực phẩm bảo vệ sức khỏe. Thực phẩm này không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh</p>
                             </div>
                         </div>
                     </div>
@@ -153,6 +157,15 @@
                     header.classList.remove("fixed-top");
                 }
             }
+
+            //Active HeaderMenu
+            var currentHref = window.location.pathname;
+            $("#headerMenu li").each(function (e, index) {
+                var href = $(this).children("a").first().attr("href");
+                if (href == currentHref) {
+                    $(this).children("a").first().addClass("active")
+                }
+            })
         });
         function loadMiniCart() {
             $("#miniCart").load("/Cart/MiniCart");

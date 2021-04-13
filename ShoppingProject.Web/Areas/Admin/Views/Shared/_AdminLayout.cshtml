@@ -194,6 +194,13 @@
                                 </a>
                             </li>
                             <li class="sidebar-list">
+                                <a class="sidebar-link sidebar-title" href="#"><i data-feather="book"></i><span>Đơn hàng</span></a>
+                                <ul class="sidebar-submenu">
+                                    <li><a asp-action="Index" asp-controller="OrderAdmin">Danh sách đơn hàng</a></li>
+                                    <li><a asp-action="Create" asp-controller="OrderAdmin">Thêm mới</a></li>
+                                </ul>
+                            </li>
+                            <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title" href="#"><i data-feather="list"></i><span>Chuyên mục bài viết</span></a>
                                 <ul class="sidebar-submenu">
                                     <li><a asp-action="Index" asp-controller="PostCategoryAdmin">Danh sách chuyên mục</a></li>
@@ -215,7 +222,7 @@
                                 </ul>
                             </li>
                             <li class="sidebar-list">
-                                <a class="sidebar-link sidebar-title" href="#"><i data-feather="book-open"></i><span>Câu hỏi</span></a>
+                                <a class="sidebar-link sidebar-title" href="#"><i data-feather="file-text"></i><span>Câu hỏi</span></a>
                                 <ul class="sidebar-submenu">
                                     <li><a asp-action="Index" asp-controller="QuestionAdmin">Tất cả câu hỏi</a></li>
                                     <li><a asp-action="Create" asp-controller="QuestionAdmin">Thêm mới</a></li>
