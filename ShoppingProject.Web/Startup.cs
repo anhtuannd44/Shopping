@@ -9,8 +9,6 @@ using Microsoft.Extensions.Hosting;
 using System.IO;
 using Newtonsoft.Json.Serialization;
 using System.Globalization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Razor;
 using Newtonsoft.Json;
 
 namespace ShoppingProject.Web

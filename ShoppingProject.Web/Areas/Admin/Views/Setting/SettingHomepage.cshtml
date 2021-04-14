@@ -1,0 +1,190 @@
+﻿@using ShoppingProject.Utilities.Enums
+@model IEnumerable<ShoppingProject.Domain.DomainModels.Setting>
+
+@{ ViewData["Title"] = "Chỉnh sửa trang chủ";
+                Layout = "_AdminLayout"; }
+
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/Admin" data-original-title="" title="">
+                <i class="icofont-home"></i> Bảng điều khiển
+            </a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-action="Index" data-original-title="" title="">
+                Chỉnh sửa trang
+            </a>
+        </li>
+        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+    </ol>
+</div>
+
+<form asp-action="Create">
+    <div class="container-fluid">
+        <section id="area1" class="bg-dark py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-12">
+                        <div class="card card-absolute">
+                            <div class="card-header bg-dark-light">
+                                <input type="text" class="form-control" value="@Model.Where(a=>a.Id == SettingKey.HomeSection1Content1).FirstOrDefault().Title" />
+                            </div>
+                            <div class="card-body pricingtable">
+                                <textarea rows="6" class="form-control mt-2">@Model.Where(a=>a.Id == SettingKey.HomeSection1Content1).FirstOrDefault().Content</textarea>
+                                <p class="text-dark"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <div class="card card-absolute">
+                            <div class="card-header bg-dark-light">
+                                <input type="text" class="form-control" value="@Model.Where(a=>a.Id == SettingKey.HomeSection1Content2).FirstOrDefault().Title" />
+                            </div>
+                            <div class="card-body pricingtable">
+                                <textarea rows="6" class="form-control mt-2">@Model.Where(a=>a.Id == SettingKey.HomeSection1Content2).FirstOrDefault().Content</textarea>
+                                <p class="text-dark"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <div class="card card-absolute">
+                            <div class="card-header bg-dark-light">
+                                <input type="text" class="form-control" value="@Model.Where(a=>a.Id == SettingKey.HomeSection1Content3).FirstOrDefault().Title" />
+                            </div>
+                            <div class="card-body pricingtable">
+                                <textarea class="form-control mt-2">@Model.Where(a=>a.Id == SettingKey.HomeSection1Content3).FirstOrDefault().Content</textarea>
+                                <p class="text-dark"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="area2" class="bg-dark py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-5 col-12">
+                        <h1 class="text-white">Choose Our Clinic, Choose The Best Care For Yourself and Your Family</h1>
+                    </div>
+                    <div class="col-md-7 col-12">
+                        <div class="card card-absolute mb-5">
+                            <div class="card-header bg-dark-light">
+                                <h5 class="text-white">Absolute Style</h5>
+                            </div>
+                            <div class="card-body pricingtable">
+                                <p class="text-dark">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+                            </div>
+                        </div>
+                        <div class="card card-absolute mb-5">
+                            <div class="card-header bg-dark-light">
+                                <h5 class="text-white">Absolute Style</h5>
+                            </div>
+                            <div class="card-body pricingtable">
+                                <p class="text-dark">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="area3" class="bg-dark-2 py-5">
+            <div class="container">
+                <div class="px-5">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <h2 class="text-white text-center"></h2>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="usp-img">
+
+                            </div>
+                            <div class="usp-content">
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">a</div>
+                        <div class="col-md-4">a</div>
+                        <div class="col-md-4">
+                            <img src="~/images/img_tinhchatkhac copy.png" class="w-100" />
+                        </div>
+                        <div class="col-md-4">a</div>
+                        <div class="col-md-4">a</div>
+                        <div class="col-md-4">a</div>
+                        <div class="col-md-4">a</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="area4" class="bg-dark py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-7">
+                        <img src="~/images/2.jpg" class="w-100" />
+                    </div>
+                    <div class="col-md-5">
+                        <h2 class="text-white text-center">Hướng dẫn sử dụng và đối tượng sử dụng</h2>
+                        <hr class="w-25 border-white" />
+                        <ul class="list pl-3">
+                            <li><i class="icon-check"></i> Duis tristique lorem non risus dignissim.</li>
+                            <li><i class="icon-check"></i> Vivamus accumsan sem sit amet.</li>
+                            <li><i class="icon-check"></i> Morbi sed orci a tortor bibendum finibus vitae.</li>
+                            <li><i class="icon-check"></i> Nam sed sem quis nisi faucibus tempor.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="area5" class="bg-dark-2 py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-5">
+                        <h2 class="text-white text-center">Thành phần chi tiết</h2>
+                        <hr class="w-25 border-white" />
+                        <ul class="list pl-3">
+                            <li><i class="icon-check"></i> Duis tristique lorem non risus dignissim.</li>
+                            <li><i class="icon-check"></i> Vivamus accumsan sem sit amet.</li>
+                            <li><i class="icon-check"></i> Morbi sed orci a tortor bibendum finibus vitae.</li>
+                            <li><i class="icon-check"></i> Nam sed sem quis nisi faucibus tempor.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-7">
+                        <img src="~/images/2.jpg" class="w-100" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="area5" class="bg-white py-5">
+            <div class="container py-4 text-center">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <img src="~/images/img_tinhchatkhac copy.png" class="w-100" />
+                    </div>
+                    <div class="col-md-8">
+                        <h1 class="font-weight-bold">
+                            Hurry up! and get<br />
+                            Free treatment for first 50 person
+                        </h1>
+                        <h6 class="font-weight-normal mb-4">We communicate honestly. No hidden fees, no surprises, no upsells! Only honest work and trustworthy staff.</h6>
+                        <a href="/san-pham" class="btn btn-danger btn-lg btn-buy-now">MUA NGAY</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</form>
+
+
+
+@section scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @await Html.PartialAsync("_SummernotePartial", new { height = 800, selector = "#Reply" })
+
+    <script type="text/javascript">
+        $('textarea').on('input', function () {
+            this.style.height = "";
+            this.style.height = this.scrollHeight + "px";
+        });
+    </script>
+}

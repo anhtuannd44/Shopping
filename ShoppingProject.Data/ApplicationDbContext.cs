@@ -21,6 +21,7 @@ namespace ShoppingProject.Data
         public virtual DbSet<District> District { set; get; }
         public virtual DbSet<Ward> Ward { set; get; }
         public virtual DbSet<Question> Question { set; get; }
+        public virtual DbSet<Setting> Setting { set; get; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
