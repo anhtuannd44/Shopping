@@ -2,7 +2,7 @@
 @model IEnumerable<ShoppingProject.Domain.DomainModels.Setting>
 
 @{ ViewData["Title"] = "Chỉnh sửa trang chủ";
-                Layout = "_AdminLayout"; }
+    Layout = "_AdminLayout"; }
 
 <div class="container-fluid">
     <ol class="breadcrumb">
@@ -26,35 +26,34 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-12">
-                        <div class="card card-absolute">
+                        <div class="card card-absolute setting-input" data-id="@((int)SettingKey.HomeSection1Content1)">
                             <div class="card-header bg-dark-light">
-                                <input type="text" class="form-control" value="@Model.Where(a=>a.Id == SettingKey.HomeSection1Content1).FirstOrDefault().Title" />
+                                <input type="text" class="form-control title" value="@Model.Where(a=>a.Id == SettingKey.HomeSection1Content1).FirstOrDefault().Title" />
                             </div>
                             <div class="card-body pricingtable">
-                                <textarea rows="6" class="form-control mt-2">@Model.Where(a=>a.Id == SettingKey.HomeSection1Content1).FirstOrDefault().Content</textarea>
+                                <textarea rows="6" class="form-control mt-2 content">@Model.Where(a=>a.Id == SettingKey.HomeSection1Content1).FirstOrDefault().Content</textarea>
                                 <p class="text-dark"></p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 col-12">
-                        <div class="card card-absolute">
+                        <div class="card card-absolute setting-input" data-id="@((int)SettingKey.HomeSection1Content2)">
                             <div class="card-header bg-dark-light">
-                                <input type="text" class="form-control" value="@Model.Where(a=>a.Id == SettingKey.HomeSection1Content2).FirstOrDefault().Title" />
+                                <input type="text" class="form-control title" value="@Model.Where(a=>a.Id == SettingKey.HomeSection1Content2).FirstOrDefault().Title" />
                             </div>
                             <div class="card-body pricingtable">
-                                <textarea rows="6" class="form-control mt-2">@Model.Where(a=>a.Id == SettingKey.HomeSection1Content2).FirstOrDefault().Content</textarea>
+                                <textarea rows="6" class="form-control mt-2 content">@Model.Where(a=>a.Id == SettingKey.HomeSection1Content2).FirstOrDefault().Content</textarea>
                                 <p class="text-dark"></p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 col-12">
-                        <div class="card card-absolute">
+                        <div class="card card-absolute setting-input" data-id="@((int)SettingKey.HomeSection1Content3)">
                             <div class="card-header bg-dark-light">
-                                <input type="text" class="form-control" value="@Model.Where(a=>a.Id == SettingKey.HomeSection1Content3).FirstOrDefault().Title" />
+                                <input type="text" class="form-control title" value="@Model.Where(a=>a.Id == SettingKey.HomeSection1Content3).FirstOrDefault().Title" />
                             </div>
                             <div class="card-body pricingtable">
-                                <textarea class="form-control mt-2">@Model.Where(a=>a.Id == SettingKey.HomeSection1Content3).FirstOrDefault().Content</textarea>
-                                <p class="text-dark"></p>
+                                <textarea class="form-control mt-2 content">@Model.Where(a=>a.Id == SettingKey.HomeSection1Content3).FirstOrDefault().Content</textarea>
                             </div>
                         </div>
                     </div>
@@ -64,24 +63,24 @@
         <section id="area2" class="bg-dark py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-md-5 col-12">
-                        <h1 class="text-white">Choose Our Clinic, Choose The Best Care For Yourself and Your Family</h1>
+                    <div class="col-md-5 col-12 setting-input" data-id="@((int)SettingKey.HomeSection1ContentMain)">
+                        <input type="text" class="form-control title" value="@Model.Where(a=>a.Id == SettingKey.HomeSection1ContentMain).FirstOrDefault().Title" />
                     </div>
                     <div class="col-md-7 col-12">
-                        <div class="card card-absolute mb-5">
+                        <div class="card card-absolute mb-5 setting-input" data-id="@SettingKey.HomeSection1Content4.ToString()">
                             <div class="card-header bg-dark-light">
-                                <h5 class="text-white">Absolute Style</h5>
+                                <input type="text" class="form-control title" value="@Model.Where(a=>a.Id == SettingKey.HomeSection1Content4).FirstOrDefault().Title" />
                             </div>
                             <div class="card-body pricingtable">
-                                <p class="text-dark">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+                                <textarea class="form-control mt-2 content">@Model.Where(a=>a.Id == SettingKey.HomeSection1Content4).FirstOrDefault().Content</textarea>
                             </div>
                         </div>
-                        <div class="card card-absolute mb-5">
+                        <div class="card card-absolute mb-5 setting-input" data-id="@((int)SettingKey.HomeSection1Content5)">
                             <div class="card-header bg-dark-light">
-                                <h5 class="text-white">Absolute Style</h5>
+                                <input type="text" class="form-control title" value="@Model.Where(a=>a.Id == SettingKey.HomeSection1Content5).FirstOrDefault().Title" />
                             </div>
                             <div class="card-body pricingtable">
-                                <p class="text-dark">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+                                <textarea class="form-control mt-2 content">@Model.Where(a=>a.Id == SettingKey.HomeSection1Content5).FirstOrDefault().Content</textarea>
                             </div>
                         </div>
                     </div>
@@ -118,19 +117,14 @@
         </section>
         <section id="area4" class="bg-dark py-5">
             <div class="container">
-                <div class="row align-items-center">
+                <div class="row align-items-center setting-input" data-id="@((int)SettingKey.HomeSection2)">
                     <div class="col-md-7">
                         <img src="~/images/2.jpg" class="w-100" />
                     </div>
                     <div class="col-md-5">
-                        <h2 class="text-white text-center">Hướng dẫn sử dụng và đối tượng sử dụng</h2>
+                        <input type="text" class="form-control title" value="@Model.Where(a=>a.Id == SettingKey.HomeSection2).FirstOrDefault().Title" />
                         <hr class="w-25 border-white" />
-                        <ul class="list pl-3">
-                            <li><i class="icon-check"></i> Duis tristique lorem non risus dignissim.</li>
-                            <li><i class="icon-check"></i> Vivamus accumsan sem sit amet.</li>
-                            <li><i class="icon-check"></i> Morbi sed orci a tortor bibendum finibus vitae.</li>
-                            <li><i class="icon-check"></i> Nam sed sem quis nisi faucibus tempor.</li>
-                        </ul>
+                        <textarea class="form-control mt-2 content" id="HomeSection2Textarea">@Model.Where(a=>a.Id == SettingKey.HomeSection2).FirstOrDefault().Content</textarea>
                     </div>
                 </div>
             </div>
@@ -138,16 +132,11 @@
 
         <section id="area5" class="bg-dark-2 py-5">
             <div class="container">
-                <div class="row align-items-center">
+                <div class="row align-items-center setting-input" data-id="@((int)SettingKey.HomeSection3)">
                     <div class="col-md-5">
-                        <h2 class="text-white text-center">Thành phần chi tiết</h2>
+                        <input type="text" class="form-control title" value="@Model.Where(a=>a.Id == SettingKey.HomeSection3).FirstOrDefault().Title" />
                         <hr class="w-25 border-white" />
-                        <ul class="list pl-3">
-                            <li><i class="icon-check"></i> Duis tristique lorem non risus dignissim.</li>
-                            <li><i class="icon-check"></i> Vivamus accumsan sem sit amet.</li>
-                            <li><i class="icon-check"></i> Morbi sed orci a tortor bibendum finibus vitae.</li>
-                            <li><i class="icon-check"></i> Nam sed sem quis nisi faucibus tempor.</li>
-                        </ul>
+                        <textarea class="form-control mt-2 content" id="HomeSection3Textarea">@Html.Raw(Model.Where(a=>a.Id == SettingKey.HomeSection3).FirstOrDefault().Content)</textarea>
                     </div>
                     <div class="col-md-7">
                         <img src="~/images/2.jpg" class="w-100" />
@@ -157,34 +146,73 @@
         </section>
         <section id="area5" class="bg-white py-5">
             <div class="container py-4 text-center">
-                <div class="row align-items-center">
+                <div class="row align-items-center setting-input" data-id="@((int)SettingKey.HomeSection4)">
                     <div class="col-md-4">
                         <img src="~/images/img_tinhchatkhac copy.png" class="w-100" />
                     </div>
                     <div class="col-md-8">
-                        <h1 class="font-weight-bold">
-                            Hurry up! and get<br />
-                            Free treatment for first 50 person
-                        </h1>
-                        <h6 class="font-weight-normal mb-4">We communicate honestly. No hidden fees, no surprises, no upsells! Only honest work and trustworthy staff.</h6>
-                        <a href="/san-pham" class="btn btn-danger btn-lg btn-buy-now">MUA NGAY</a>
+                        <input type="text" class="form-control title" value="@Model.Where(a=>a.Id == SettingKey.HomeSection4).FirstOrDefault().Title" />
+                        <textarea class="form-control mt-2 content">@Html.Raw(Model.Where(a=>a.Id == SettingKey.HomeSection4).FirstOrDefault().Content)</textarea>
+                        <p class="mt-3 mb-0">Link sản phẩm</p>
+                        <input type="text" class="form-control title" value="@Model.Where(a=>a.Id == SettingKey.HomeSection4).FirstOrDefault().Link" />
                     </div>
                 </div>
             </div>
         </section>
     </div>
 </form>
-
+<button class="btn btn-success position-fixed" id="btnUpdate" style="top: 100px; right: 15px; z-index: 9999">Cập nhật</button>
 
 
 @section scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    @await Html.PartialAsync("_SummernotePartial", new { height = 800, selector = "#Reply" })
-
+    @await Html.PartialAsync("_SummernotePartial", new { height = 400, selector = "#HomeSection2Textarea" })
+    @await Html.PartialAsync("_SummernotePartial", new { height = 400, selector = "#HomeSection3Textarea" })
     <script type="text/javascript">
         $('textarea').on('input', function () {
             this.style.height = "";
             this.style.height = this.scrollHeight + "px";
         });
+
+        $(document).on("click", "#btnUpdate", function () {
+            var inputSetting = [];
+            $(".setting-input").each(function (e, index) {
+                var e = $(this);
+                inputSetting.push({
+                    Id: e.data("id"),
+                    Title: e.find("input.title").first().val(),
+                    Content: e.find("textarea.content").val(),
+                    Image: e.find("input.image").val(),
+                    Link: e.find("input.link").val()
+                })
+            })
+            $.ajax({
+                method: "POST",
+                dataType: "json",
+                url: "/Admin/Setting/UpdateSetting",
+                data: {
+                    setting: inputSetting
+                },
+                beforeSend: function () {
+                    loadSpinner();
+                },
+                success: function (response) {
+                    Swal.fire(
+                        'Thành công!',
+                        'Trang chủ đã được cập nhật',
+                        'success'
+                    )
+                    exitSpinner();
+                },
+                error: function (response) {
+                    Swal.fire(
+                        'Thất bại!',
+                        response.responseJSON[0].ErrorMessage,
+                        'error'
+                    )
+                    exitSpinner();
+                }
+            })
+        })
     </script>
 }

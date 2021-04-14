@@ -1,19 +1,33 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ShoppingProject.Service.Interface;
+using ShoppingProject.Utilities.Enums;
 using ShoppingProject.Web.Models;
+using ShoppingProject.Web.Models.Home;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace ShoppingProject.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+        private readonly ISettingService _settingService;
+        public HomeController
+            (
+                ISettingService settingService
+            )
         {
+            _settingService = settingService;
         }
 
         [Route("/")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = new HomeIndexModel()
+            {
+                Setting = await _settingService.GetListSettingList(SettingType.Homepage),
+                Slider = await _settingService.GetAllSlider()
+            };
+            return View(model);
         }
         [Route("ribmax-dam-chat-dan-ong")]
         public IActionResult Ribmax()

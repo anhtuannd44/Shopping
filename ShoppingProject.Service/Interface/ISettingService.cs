@@ -10,5 +10,7 @@ namespace ShoppingProject.Service.Interface
     {
         Task CreateDataSettingHompage();
         Task<List<Setting>> GetListSettingList(SettingType type);
+        Task<List<Slider>> GetAllSlider();
+        Task UpdateSetting(List<Setting> setting);
     }
 }

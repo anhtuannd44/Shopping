@@ -1,5 +1,6 @@
 ﻿using ShoppingProject.Domain.Enums;
 using ShoppingProject.Utilities.Enums;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -24,6 +25,7 @@ namespace ShoppingProject.Domain.DomainModels
         public string Image { set; get; }
         public string Link { get; set; }
         public SettingType Type { get; set; }
+        [DefaultValue(Status.Public)]
         public Status Status { get; set; }
     }
 }

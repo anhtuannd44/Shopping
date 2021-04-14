@@ -73,5 +73,9 @@ namespace ShoppingProject.Data
         {
             DbSet.Update(entity);
         }
+        public virtual void UpdateRange(List<T> entity)
+        {
+            DbSet.UpdateRange(entity);
+        }
     }
 }

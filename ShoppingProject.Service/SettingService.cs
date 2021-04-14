@@ -13,19 +13,31 @@ namespace ShoppingProject.Service
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<Setting> _settingRepository;
+        private readonly IRepository<Slider> _sliderRepository;
 
         public SettingService(
             IUnitOfWork unitOfWork,
-            IRepository<Setting> settingRepository
+            IRepository<Setting> settingRepository,
+            IRepository<Slider> sliderRepository
             )
         {
             _unitOfWork = unitOfWork;
             _settingRepository = settingRepository;
+            _sliderRepository = sliderRepository;
         }
        
         public async Task<List<Setting>> GetListSettingList(SettingType type)
         {
             return await _settingRepository.FindAll(a=>a.Type == type).ToListAsync();
+        }
+        public async Task UpdateSetting(List<Setting> setting)
+        {
+            _settingRepository.UpdateRange(setting);
+            await _unitOfWork.SaveChangesAsync();
+        }
+        public async Task<List<Slider>> GetAllSlider()
+        {
+            return await _sliderRepository.FindAll().ToListAsync();
         }
         public async Task CreateDataSettingHompage()
         {

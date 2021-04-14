@@ -16,5 +16,6 @@ namespace ShoppingProject.Data.Interface
         void Remove(T entity);
         void RemoveRange(Expression<Func<T, bool>> predicate);
         void Update(T entity);
+        void UpdateRange(List<T> entity);
     }
 }

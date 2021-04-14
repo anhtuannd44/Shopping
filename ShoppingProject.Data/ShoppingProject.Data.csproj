@@ -18,6 +18,8 @@
     <Compile Include="Migrations\20210412142902_AddEmailToOrder.Designer.cs" />
     <Compile Include="Migrations\20210414110345_CreateSettingTable.cs" />
     <Compile Include="Migrations\20210414110345_CreateSettingTable.Designer.cs" />
+    <Compile Include="Migrations\20210414175424_CreateSlider.cs" />
+    <Compile Include="Migrations\20210414175424_CreateSlider.Designer.cs" />
     <Compile Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
   </ItemGroup>
 
