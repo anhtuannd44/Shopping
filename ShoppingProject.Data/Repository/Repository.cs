@@ -58,15 +58,17 @@ namespace ShoppingProject.Data
         {
             await DbSet.AddRangeAsync(entities);
         }
-               
+
         public virtual void Remove(T entity)
         {
             DbSet.Remove(entity);
         }
-        public virtual void RemoveRange(Expression<Func<T, bool>> predicate)
+        public virtual void RemoveRange(Expression<Func<T, bool>> predicate = null)
         {
-            var entitiesToDelete = FindAll(predicate).ToList();
-            DbSet.RemoveRange(entitiesToDelete);
+            if (predicate != null)
+                DbSet.RemoveRange(FindAll(predicate).ToList());
+            else
+                DbSet.RemoveRange(FindAll().ToList());
         }
 
         public virtual void Update(T entity)

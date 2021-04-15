@@ -129,13 +129,17 @@
                         <h5>Album</h5>
                     </div>
                     <div class="card-body">
-                        <div id="albumPreview">
+                        <div id="albumPreview" class="row">
                             @if (Model.ProductImages.Count > 0)
                             {
                                 foreach (var item in (Array)ViewData["ProductAlbum"])
                                 {
-                                    <img src='@item' class='pre-img p-2 shadow rounded' style='width:30%; object-fit: cover; height: 70px' />
-                                    <input id='selectImage' name='selectImage' value='@item' type='hidden'/>
+                                    <div class="col-md-4">
+                                        <div class="image-box ratio-4-3">
+                                            <img src="@item" class="pre-img img-fluid image">
+                                        </div>
+                                        <input id='selectImage' name='selectImage' class="slider-input" value='@item' type='hidden' />
+                                    </div>
                                 }
                             }
                         </div>

@@ -30,9 +30,12 @@ namespace ShoppingProject.Service
         {
             return await _settingRepository.FindAll(a=>a.Type == type).ToListAsync();
         }
-        public async Task UpdateSetting(List<Setting> setting)
+        public async Task UpdateSetting(List<Setting> setting, List<Slider> slider)
         {
             _settingRepository.UpdateRange(setting);
+            _sliderRepository.RemoveRange();
+            if (slider.Count > 0)
+                await _sliderRepository.CreateRangeAsync(slider);
             await _unitOfWork.SaveChangesAsync();
         }
         public async Task<List<Slider>> GetAllSlider()

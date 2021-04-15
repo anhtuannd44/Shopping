@@ -14,7 +14,7 @@ namespace ShoppingProject.Data.Interface
         Task CreateRangeAsync(List<T> entities);
         Task<T> FindByIdAsync(params object[] keys);
         void Remove(T entity);
-        void RemoveRange(Expression<Func<T, bool>> predicate);
+        void RemoveRange(Expression<Func<T, bool>> predicate = null);
         void Update(T entity);
         void UpdateRange(List<T> entity);
     }

@@ -232,3 +232,16 @@ input::placeholder {
 footer li {
     line-height: 1.25
 }
+#settingAdmin .title {
+    color: #fff;
+}
+#settingAdmin .title:hover, #settingAdmin .title:active {
+    color: #000;
+    background: #fff
+}
+#area6 .title {
+    color: #000;
+}
+#area6 .title:hover, #area6 .title:active {
+    color: #000;
+}

@@ -5,6 +5,7 @@ using ShoppingProject.Domain.DomainModels;
 using ShoppingProject.Domain.Enums;
 using ShoppingProject.Service.Interface;
 using ShoppingProject.Utilities.Enums;
+using ShoppingProject.Web.Models.Home;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,15 +29,19 @@ namespace ShoppingProject.Web.Areas.Admin.Controllers
         public async Task<IActionResult> SettingHomepage()
         {
             //await _settingService.CreateDataSettingHompage();
-            var model = await _settingService.GetListSettingList(SettingType.Homepage);
+            var model = new HomeIndexModel()
+            {
+                Setting = await _settingService.GetListSettingList(SettingType.Homepage),
+                Slider = await _settingService.GetAllSlider()
+            };
             return View(model);
         }
-        public async Task<IActionResult> UpdateSetting(List<Setting> setting)
+        public async Task<IActionResult> UpdateSetting(List<Setting> setting, List<Slider> slider)
         {
             try
             {
                 setting.ForEach(a => { a.Type = SettingType.Homepage; a.Status = Status.Public; });
-                await _settingService.UpdateSetting(setting);
+                await _settingService.UpdateSetting(setting, slider);
                 return new OkObjectResult(setting);
             }
             catch (Exception ex)
@@ -46,6 +51,11 @@ namespace ShoppingProject.Web.Areas.Admin.Controllers
                 IEnumerable<ModelError> allErrors = ModelState.Values.SelectMany(v => v.Errors);
                 return new BadRequestObjectResult(allErrors);
             }
+        }
+        public async Task<IActionResult> Slider()
+        {
+            var model = await _settingService.GetAllSlider();
+            return View(model);
         }
     }
 }

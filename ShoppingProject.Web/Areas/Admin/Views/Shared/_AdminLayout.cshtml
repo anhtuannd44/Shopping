@@ -228,6 +228,23 @@
                                     <li><a asp-action="Create" asp-controller="QuestionAdmin">Thêm mới</a></li>
                                 </ul>
                             </li>
+                            <li class="sidebar-list">
+                                <a class="sidebar-link sidebar-title" href="#"><i data-feather="file-text"></i><span>Chỉnh sửa Trang</span></a>
+                                <ul class="sidebar-submenu">
+                                    <li><a asp-action="Slider" asp-controller="Setting">Slider</a></li>
+                                    <li><a asp-action="SettingHomepage" asp-controller="Setting">Trang chủ</a></li>
+                                    <li><a asp-action="SettingRebmax" asp-controller="Setting">Trang Ribmax</a></li>
+                                    <li><a asp-action="SettingContact" asp-controller="Setting">Trang Liên hệ</a></li>
+                                </ul>
+                            </li>
+                            <li class="sidebar-list">
+                                <a class="sidebar-link sidebar-title" href="#"><i data-feather="file-text"></i><span>Cấu hình</span></a>
+                                <ul class="sidebar-submenu">
+                                    <li><a asp-action="Index" asp-controller="QuestionAdmin">Chung</a></li>
+                                    <li><a asp-action="Create" asp-controller="QuestionAdmin">Cấu hình SEO</a></li>
+                                    <li><a asp-action="Create" asp-controller="QuestionAdmin">Thông tin liên hệ</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                     <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

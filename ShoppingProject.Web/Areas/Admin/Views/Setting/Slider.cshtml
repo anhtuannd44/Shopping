@@ -1,0 +1,80 @@
+﻿@using ShoppingProject.Utilities.Enums
+@model IEnumerable<ShoppingProject.Domain.DomainModels.Slider>
+
+@{
+    ViewData["Title"] = "Chỉnh sửa Slider";
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/Admin" data-original-title="" title="">
+                <i class="icofont-home"></i> Bảng điều khiển
+            </a>
+        </li>
+        <li class="breadcrumb-item">
+            <a asp-action="Index" data-original-title="" title="">
+                Chỉnh sửa trang
+            </a>
+        </li>
+        <li class="breadcrumb-item active">@ViewData["Title"]</li>
+    </ol>
+</div>
+
+<form asp-action="Create">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</form>
+<button class="btn btn-success position-fixed" id="btnUpdate" style="top: 100px; right: 15px; z-index: 9999">Cập nhật</button>
+
+
+@section scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+
+        $(document).on("click", "#btnUpdate", function () {
+            var inputSetting = [];
+            $(".setting-input").each(function (e, index) {
+                var e = $(this);
+                inputSetting.push({
+                    Id: e.data("id"),
+                    Title: e.find("input.title").first().val(),
+                    Content: e.find("textarea.content").val(),
+                    Image: e.find("input.image").val(),
+                    Link: e.find("input.link").val()
+                })
+            })
+            $.ajax({
+                method: "POST",
+                dataType: "json",
+                url: "/Admin/Setting/UpdateSetting",
+                data: {
+                    setting: inputSetting
+                },
+                beforeSend: function () {
+                    loadSpinner();
+                },
+                success: function (response) {
+                    Swal.fire(
+                        'Thành công!',
+                        'Trang chủ đã được cập nhật',
+                        'success'
+                    )
+                    exitSpinner();
+                },
+                error: function (response) {
+                    Swal.fire(
+                        'Thất bại!',
+                        response.responseJSON[0].ErrorMessage,
+                        'error'
+                    )
+                    exitSpinner();
+                }
+            })
+        })</script>
+}

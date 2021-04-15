@@ -23,12 +23,14 @@
                 if (isMultiple) {
                     $(preview).html("");
                     $.each(files, function (key, value) {
-                        $(preview).append("<img src='" + value.url + "' class='pre-img p-2 shadow rounded' style='width:30%; object-fit: cover; height: 70px'/>")
+                        var dataAppend = "<div class='col-md-4'>"
+                                            + "<div class='image-box ratio-4-3'>"
+                                                + "<img src='"+value.url+"' class='pre-img img-fluid image'>"
+                                            + "</div>"
+                                            + "<input id='selectImage' name='selectImage' class='slider-input' value='" + value.url + "' type='hidden' />"
+                                        + "</div>";
+                        $(preview).append(dataAppend);
                     });
-                    $.each(files, function (key, value) {
-                        $(preview).append("<input id='selectImage' name='selectImage' value='" + value.url + "' type='hidden'/>")
-                    });
-                    console.log($(preview).html());
                 }
                 else {
                     console.log(files.url);
