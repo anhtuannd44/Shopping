@@ -7,6 +7,7 @@ using ShoppingProject.Data.Interface;
 using System.Linq;
 using System;
 using ShoppingProject.Domain.Enums;
+using ShoppingProject.Utilities;
 
 namespace ShoppingProject.Service
 {
@@ -99,6 +100,23 @@ namespace ShoppingProject.Service
         {
             _productRepository.Remove(product);
             await _unitOfWork.SaveChangesAsync();
+        }
+        public async Task<PagedResult<Product>> GetAllPaging(Status? status, int page, int pageSize)
+        {
+            var query = _productRepository.FindAll();
+            if (status != null)
+            {
+                query = query.Where(a => a.Status == status);
+            }
+            query = query.Include(a => a.ProductImages).OrderByDescending(x => x.DateCreated).Skip((page - 1) * pageSize).Take(pageSize);
+            var paginationSet = new PagedResult<Product>()
+            {
+                Results = await query.ToListAsync(),
+                CurrentPage = page,
+                RowCount = query.Count(),
+                PageSize = pageSize
+            };
+            return paginationSet;
         }
     }
 }

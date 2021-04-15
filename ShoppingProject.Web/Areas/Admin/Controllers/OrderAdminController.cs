@@ -51,6 +51,7 @@ namespace ShoppingProject.Web.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CustomerName,CustomerEmail,CustomerPhoneNumber,CustomerAddress,CustomerMessage,PaymentMethod,OrderStatus,OrderDetails")] Order order)
         {
             if (!ModelState.IsValid)

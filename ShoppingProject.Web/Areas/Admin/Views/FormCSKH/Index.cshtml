@@ -1,0 +1,109 @@
+﻿@using ShoppingProject.Utilities.Enums 
+@model ShoppingProject.Web.Models.CSKHViewModel
+@{
+    ViewData["Title"] = "Tư vấn khách hàng";
+    Layout = "_AdminLayout";
+    var i = Model.Data.FirstRowOnPage;
+}
+
+<div class="container-fluid">
+    <div class="row align-items-center">
+        <div class="col-6">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/~" data-original-title="" title="">
+                        <i class="icofont-home"></i> Bảng điều khiển
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a asp-action="Index" data-original-title="" title="">
+                        Data thu thập
+                    </a>
+                </li>
+                <li class="breadcrumb-item active">@ViewData["Title"]</li>
+            </ol>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-action="Create" class="btn btn-primary">Thêm mới</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <h5>Danh sách thu thập</h5>
+        </div>
+        <div class="card-body">               
+            @if (Model.Data.Results.Count() > 0)
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%">
+                                    STT
+                                </th>
+                                <th>
+                                    Email
+                                </th>
+                                <th>
+                                    Giới tính
+                                </th>
+                                <th>Năm sinh</th>
+                                <th>Thời gian</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Data.Results)
+                            {
+                                <tr id="td_@item.Id">
+                                    <td>
+                                        @i
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id">@item.Email</a>
+                                    </td>
+                                    <td>
+                                        @(item.Gentle==Gentle.Male?"Nam":"Nữ")
+                                    </td>
+                                     <td>
+                                        @item.BirthYear
+                                    </td>
+                                    <td>
+                                        @item.DateCreated.ToString("dd/MM/yyyy HH:mm")
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="badge badge-warning"><i class="icofont-pencil-alt-2"></i></a>
+                                        <a href="#" class="badge badge-danger delete" data-id="@item.Id" data-name="@item.Id"><i class="icofont-ui-delete"></i></a>
+                                    </td>
+                                </tr>
+                                i++;
+                            }
+                        </tbody>
+                    </table>
+                    <div class="pb-3 pagination-light">
+                        @await Component.InvokeAsync("Pager", Model.Data)
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="text-center">
+                    <p class="">Chưa có dữ liệu</p>
+                    <a asp-action="Create" class="btn btn-gradient-primary">Thêm mới</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(".delete").click( function () {
+            var id = $(this).data("id");
+            var name = $(this).data("name");
+            deleteAjax(id, "@Url.Action("Delete")");
+        })
+    </script>
+}

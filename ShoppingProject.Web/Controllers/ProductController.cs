@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
+using ShoppingProject.Domain.Enums;
 using ShoppingProject.Service.Interface;
+using ShoppingProject.Web.Models;
 using System.Threading.Tasks;
 
 namespace ShoppingProject.Web.Controllers
@@ -21,6 +23,16 @@ namespace ShoppingProject.Web.Controllers
             _logger = logger;
             _cache = cache;
             _productService = productService;
+        }
+        [Route("tat-ca-san-pham")]
+        public async Task<IActionResult> ProductList(int page = 1, int pageSize = 10)
+        {
+            var model = new ProductViewModel()
+            {
+                Data = await _productService.GetAllPaging(Status.Public, page, pageSize),
+                PageSize = 10
+            };
+            return View(model);
         }
 
         [Route("{slug}.html", Name = "viewonepost")]

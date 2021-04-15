@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<ShoppingProject.Domain.DomainModels.PostCategory>
-
+<form id="tuVanSucKhoe">
     <img src="~/images/bannertintuc.jpg" class="w-100" />
+    @Html.AntiForgeryToken()
     <div class="card bg-white rounded mt-4 border-0">
         <div class="title rounded bg-primary">
             <p class="small m-0 p-3">CHỦ ĐỘNG CHĂM SÓC SỨC KHỎE</p>
@@ -8,18 +9,16 @@
         <div class="card-body px-2 py-4">
             <p class="small" style="line-height: 1.1">Bạn muốn nhận thông tin từ các chuyên gia để chủ động chăm sóc sức khỏe cho bản thân và gia đình?</p>
             <div class="form-group mb-2">
-                <input class="form-control border-primary" type="email" placeholder="Nhập Email của bạn" value="" />
+                <input class="form-control border-primary" type="email" placeholder="Nhập Email của bạn" value="" id="tuVanEmail" />
             </div>
             <div class="form-group mb-2">
-                <select class="form-control border-primary" required>
-                    <option>Chọn giới tính</option>
+                <select class="form-control border-primary" required id="tuVanGioiTinh">
                     <option value="0">Nam</option>
                     <option value="1">Nữ</option>
                 </select>
             </div>
             <div class="form-group mb-2">
-                <select class="form-control border-primary" required>
-                    <option>Chọn năm sinh</option>
+                <select class="form-control border-primary" required id="tuVanNamSinh">
                     @for (int i = 1950; i <= 2021; i++)
                     {
                         <option value="@i">@i</option>
@@ -27,10 +26,11 @@
                 </select>
             </div>
             <div class="submit-button">
-                <button class="btn btn-primary btn-small btn-block">Đăng ký</button>
+                <button class="btn btn-primary btn-small btn-block" id="dangKyTuVan" type="button">Đăng ký</button>
             </div>
         </div>
     </div>
+</form>
 <div class="card rounded mt-4" style="background: #262932; border: 1px solid #374558 !important">
     <div class="title rounded">
         <p class="m-0 pt-3 pb-2 px-3 text-white">CHUYÊN MỤC BÀI VIẾT</p>

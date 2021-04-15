@@ -20,6 +20,10 @@
     <Compile Include="Migrations\20210414110345_CreateSettingTable.Designer.cs" />
     <Compile Include="Migrations\20210414175424_CreateSlider.cs" />
     <Compile Include="Migrations\20210414175424_CreateSlider.Designer.cs" />
+    <Compile Include="Migrations\20210415175141_AddFormCSKH.cs" />
+    <Compile Include="Migrations\20210415175141_AddFormCSKH.Designer.cs" />
+    <Compile Include="Migrations\20210415191819_AddGentleAndReadOnForm.cs" />
+    <Compile Include="Migrations\20210415191819_AddGentleAndReadOnForm.Designer.cs" />
     <Compile Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
   </ItemGroup>
 

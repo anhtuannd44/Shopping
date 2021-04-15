@@ -25,19 +25,17 @@
         <link rel="stylesheet" type="text/css" href="~/lib/sweetalert2/sweetalert2.min.css" />
         <link rel="stylesheet" type="text/css" href="~/lib/theme/assets/css/animate.css" />
         <link rel="stylesheet" type="text/css" href="~/lib/select2/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="~/lib/theme/assets/css/date-picker.css" />
         <link rel="stylesheet" type="text/css" href="~/lib/theme/assets/css/vendors/select2.css" />
         <link rel="stylesheet" type="text/css" href="~/lib/theme/assets/css/vendors/summernote.css" />
         <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="~/lib/theme/assets/css/style.css" />
         <link rel="stylesheet" type="text/css" href="~/lib/theme/assets/css/responsive.css" />
     </environment>
 
     <environment exclude="Development">
         <link rel="stylesheet" type="text/css" href="~/css/vendor.min.css" />
     </environment>
-
-    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="~/lib/theme/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/sites.css" />
 </head>
 <body class="bg-1 d-flex flex-column h-100">
     <!-- Loader starts-->
@@ -229,6 +227,13 @@
                                 </ul>
                             </li>
                             <li class="sidebar-list">
+                                <a class="sidebar-link sidebar-title" href="#"><i data-feather="file-text"></i><span>Dữ liệu thu thập</span></a>
+                                <ul class="sidebar-submenu">
+                                    <li><a asp-action="Index" asp-controller="FormCSKH">Danh sách</a></li>
+                                    <li><a asp-action="Create" asp-controller="FormCSKH">Thêm mới</a></li>
+                                </ul>
+                            </li>
+                            <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title" href="#"><i data-feather="file-text"></i><span>Chỉnh sửa Trang</span></a>
                                 <ul class="sidebar-submenu">
                                     <li><a asp-action="Slider" asp-controller="Setting">Slider</a></li>
@@ -274,33 +279,25 @@
         </div>
     </div>
 
-    <environment include="Development">
-        <script type="text/javascript" src="~/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="~/lib/theme/assets/js/bootstrap/popper.min.js"></script>
-        <script type="text/javascript" src="~/lib/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="~/lib/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
-        <script type="text/javascript" src="~/lib/theme/assets/js/icons/feather-icon/feather.min.js"></script>
-        <script type="text/javascript" src="~/lib/theme/assets/js/icons/feather-icon/feather-icon.js"></script>
-        <script type="text/javascript" src="~/lib/theme/assets/js/config.js"></script>
-        <script type="text/javascript" src="~/lib/theme/assets/js/sidebar-menu.js"></script>
-        <script type="text/javascript" src="~/lib/theme/assets/js/notify/bootstrap-notify.min.js"></script>
-        <script type="text/javascript" src="~/lib/theme/assets/js/notify/index.js"></script>
-        <script type="text/javascript" src="~/lib/theme/assets/js/datepicker/date-picker/datepicker.js"></script>
-        <script type="text/javascript" src="~/lib/theme/assets/js/datepicker/date-picker/datepicker.en.js"></script>
-        <script type="text/javascript" src="~/lib/theme/assets/js/datepicker/date-picker/datepicker.custom.js"></script>
-        <script type="text/javascript" src="~/lib/theme/assets/js/tooltip-init.js"></script>
-        <script type="text/javascript" src="~/lib/sweetalert2/sweetalert2.min.js"></script>
-        <script type="text/javascript" src="~/lib/theme/assets/js/script.js"></script>
-        <script type="text/javascript" src="~/lib/select2/js/select2.min.js"></script>
-        <script type="text/javascript" src="~/lib/select2/js/i18n/vi.min.js"></script>
-        <script type="text/javascript" src="~/lib/mustache/mustache.js"></script>
+    <script type="text/javascript" src="~/lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/theme/assets/js/bootstrap/popper.min.js"></script>
+    <script type="text/javascript" src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript" src="~/lib/theme/assets/js/icons/feather-icon/feather.min.js"></script>
+    <script type="text/javascript" src="~/lib/theme/assets/js/icons/feather-icon/feather-icon.js"></script>
+    <script type="text/javascript" src="~/lib/theme/assets/js/config.js"></script>
+    <script type="text/javascript" src="~/lib/theme/assets/js/sidebar-menu.js"></script>
+    <script type="text/javascript" src="~/lib/theme/assets/js/notify/bootstrap-notify.min.js"></script>
+    <script type="text/javascript" src="~/lib/theme/assets/js/notify/index.js"></script>
+    <script type="text/javascript" src="~/lib/theme/assets/js/tooltip-init.js"></script>
+    <script type="text/javascript" src="~/lib/sweetalert2/sweetalert2.min.js"></script>
+    <script type="text/javascript" src="~/lib/theme/assets/js/script.js"></script>
+    <script type="text/javascript" src="~/lib/select2/js/select2.min.js"></script>
+    <script type="text/javascript" src="~/lib/select2/js/i18n/vi.min.js"></script>
+    <script type="text/javascript" src="~/lib/mustache/mustache.js"></script>
+    <script type="text/javascript" src="~/js/site.js"></script>
 
-        <script type="text/javascript" src="~/js/site.js"></script>
-    </environment>
-    <environment exclude="Development">
-        <script type="text/javascript" src="~/js/vendor.min.js"></script>
-    </environment>
     @await RenderSectionAsync("Scripts", required: false)
     <script>
         $('.select2').select2({

@@ -37,7 +37,7 @@
                             <li class="nav-item"><a class="nav-link" href="/">TRANG CHỦ</a></li>
                             <li class="nav-item"><a class="nav-link" href="/ribmax-dam-chat-dan-ong">RIBMAX - ĐẬM CHẤT ĐÀN ÔNG</a></li>
                             <li class="nav-item"><a class="nav-link" href="/tin-tuc">SỨC KHỎE SINH LÝ NAM</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/san-pham">MUA NGAY</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/san-pham/tat-ca-san-pham">MUA NGAY</a></li>
                             <li class="nav-item"><a class="nav-link" href="/hoi-dap">HỎI ĐÁP</a></li>
                             <li class="nav-item"><a class="nav-link" href="/lien-he">LIÊN HỆ</a></li>
                             <li class="cart-nav onhover-dropdown mini-cart" id="miniCart">
@@ -52,7 +52,7 @@
         @RenderBody()
         <footer>
             <div class="footer-1 py-3 border-top">
-                <div class="container">
+                <div class="container text-white">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="footer-content">
@@ -60,7 +60,7 @@
                                     <img src="~/images/Logo-Header.png" height="65" />
                                     <img src="~/images/TUE-DUC.png" height="65" />
                                 </div>
-                                <p class="mt-3">
+                                <p class="mt-3 text-white">
                                     Tuyên ngôn của CEO: Kiên trì, không ngừng học hỏi, đổi mới sáng tạo, kỷ luật & Lấy con người làm trọng tâm là cam kết như Vàng ròng của doanh chủ, không phải mục tiêu chính là Lợi nhuận.
                                 </p>
                             </div>
@@ -86,15 +86,17 @@
                             </div>
                             <div class="footer-content">
                                 <ul>
-                                    <li>Email:<br/>
+                                    <li>
+                                        Email:<br />
                                         <a class="ml-3 small" href="https://www.agoda.com/">tueduc315@gmail.com</a>
                                         <br />
                                         <a class="ml-3 small" href="#">tueduc.cskh@gmail.com</a>
                                     </li>
                                     <li class="mt-2"><a href="tel:0911828288" class="small">Số điện thoại: 0911 82 82 88</a></li>
-                                    <li class="mt-2"><span class="small">Thời Gian Làm Việc:</span><br />
+                                    <li class="mt-2">
+                                        <span class="small">Thời Gian Làm Việc:</span><br />
                                         <a class="small ml-3">Thứ 2 – Thứ 6 : 08:00 – 17:00</a>
-                                        <br/>
+                                        <br />
                                         <a class="small ml-3">Thứ 7 : 08:00 – 12:00</a>
                                     </li>
                                 </ul>
@@ -129,88 +131,20 @@
         <script type="text/javascript" src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
         <script type="text/javascript" src="~/lib/theme/assets/js/icons/feather-icon/feather.min.js"></script>
         <script type="text/javascript" src="~/lib/theme/assets/js/icons/feather-icon/feather-icon.js"></script>
-        <script type="text/javascript" src="~/lib/theme/assets/js/config.js"></script>
         <script type="text/javascript" src="~/lib/theme/assets/js/owlcarousel/owl.carousel.js"></script>
         <script type="text/javascript" src="~/lib/theme/assets/js/owlcarousel/owl-custom.js"></script>
         <script type="text/javascript" src="~/lib/sweetalert2/sweetalert2.min.js"></script>
         <script type="text/javascript" src="~/lib/theme/assets/js/animation/wow/wow.min.js"></script>
         <script type="text/javascript" src="~/lib/theme/assets/js/landing_sticky.js"></script>
         <script type="text/javascript" src="~/lib/theme/assets/js/landing.js"></script>
-        <script type="text/javascript" src="~/js/site.js"></script>
     </environment>
     <environment exclude="Development">
         <script type="text/javascript" src="~/js/vendor.min.js"></script>
     </environment>
+    <script type="text/javascript" src="~/js/site.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <script>
-        $(document).ready(function () {
-            loadMiniCart();
-            exitSpinner();
-            window.onscroll = function () { myFunction() };
-
-            var header = document.getElementById("mainHeader");
-            var sticky = header.offsetTop;
-            function myFunction() {
-                if (window.pageYOffset > sticky) {
-                    header.classList.add("fixed-top");
-                } else {
-                    header.classList.remove("fixed-top");
-                }
-            }
-
-            //Active HeaderMenu
-            var currentHref = window.location.pathname;
-            $("#headerMenu li").each(function (e, index) {
-                var href = $(this).children("a").first().attr("href");
-                if (href == currentHref) {
-                    $(this).children("a").first().addClass("active")
-                }
-            })
-        });
-        function loadMiniCart() {
-            $("#miniCart").load("/Cart/MiniCart");
-        }
-        $(document).on("click", ".remove-product", function () {
-            var productId = $(this).data("id");
-            $.ajax({
-                method: "GET",
-                url: "/cart/remove",
-                data: {
-                    productId: productId
-                },
-                beforeSend: function () {
-                    loadSpinner();
-                },
-                success: function (response) {
-                    var data = response;
-                    if (data.Status == 200) {
-                        loadMiniCart();
-                        Swal.fire(
-                            'Thành công!',
-                            'Xóa sản phẩm khỏi giỏ hàng',
-                            'success'
-                        );                        
-                    }
-                    else {
-                        Swal.fire(
-                            'Thất bại!',
-                            'Có lỗi xảy ra trong quá trình thực hiện. Vui lòng thử lại.',
-                            'error'
-                        )
-                    }
-                },
-                error: function () {
-                    Swal.fire(
-                        'Thất bại!',
-                        'Có lỗi xảy ra khi gửi dữ liệu.',
-                        'error'
-                    )
-                },
-                complete: function () {
-                    exitSpinner()
-                }
-            })
-        })
+        
     </script>
 </body>
 </html>

@@ -1,0 +1,61 @@
+﻿@model ShoppingProject.Web.Models.ProductViewModel
+@{ 
+    ViewData["Title"] = "Cửa hàng";
+    Layout = "_Layout";
+}
+<div class="container">
+    <div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/" data-original-title="" title="">
+                    <i class="icofont-home"></i> Trang chủ
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a asp-action="Index" data-original-title="" title="">
+                    Sản phẩm
+                </a>
+            </li>
+            <li class="breadcrumb-item active">Danh sách sản phẩm</li>
+        </ol>
+    </div>
+    <div class="product-wrapper-grid">
+        @if (Model.Data.Results.Count > 0)
+        {
+            <div class="row">
+                @foreach (var item in Model.Data.Results)
+                {
+                    <div class="col-xl-3 col-sm-6 xl-4">
+                        <div class="card">
+                            <a href="/san-pham/@(item.Slug+".html")">
+                                <div class="product-box">
+                                    <div class="product-img">
+                                        <img class="img-fluid" src="@item.CoverUrl" alt="">
+                                    </div>
+                                    <div class="product-details p-3">
+                                        <h4 class="mt-3 text-primary">@item.Title</h4>
+                                        <p class="text-dark" style="line-height: 1.25">@item.Description.Substring(0, item.Description.Length>100?100:item.Description.Length)</p>
+                                        <div class="product-price">
+                                            @if (item.PromotionPrice.HasValue)
+                                            {
+                                                <h4 class="text-success">@string.Format("{0:C0}", item.PromotionPrice)</h4>
+                                                    <del class="text-dark">@string.Format("{0:C0}", item.Price)</del>
+                                            }
+                                            else
+                                            {
+                                                <h4 class="text-success">@string.Format("{0:C0}", item.Price)</h4>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="pb-3 pagination-light">
+                @await Component.InvokeAsync("Pager", Model.Data)
+            </div>
+        }
+    </div>
+</div>

@@ -23,6 +23,7 @@ namespace ShoppingProject.Data
         public virtual DbSet<Question> Question { set; get; }
         public virtual DbSet<Setting> Setting { set; get; }
         public virtual DbSet<Slider> Slider { set; get; }
+        public virtual DbSet<FormCSKH> FormCSKH { set; get; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

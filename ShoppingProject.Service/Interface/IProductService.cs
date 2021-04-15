@@ -1,5 +1,6 @@
 ﻿using ShoppingProject.Domain.DomainModels;
 using ShoppingProject.Domain.Enums;
+using ShoppingProject.Utilities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,5 +16,6 @@ namespace ShoppingProject.Service.Interface
         Task UpdateProductItem(Product product, string[] selectImage);
         Task<bool> IsSlugProductExisted(string slug, int? productId = null);
         Task RemoveProduct(Product product);
+        Task<PagedResult<Product>> GetAllPaging(Status? status, int page, int pageSize);
     }
 }
